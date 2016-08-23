@@ -11,7 +11,37 @@ use ReportDefinition;
 use Khill\Lavacharts\Lavacharts;
 
 
+// $parcela_impressao = 'SearchImpressionShare';
+		// $parcela_impressao_orcamento = 'SearchBudgetLostImpressionShare';
+		// $parcela_impressao_rank = 'SearchRankLostImpressionShare';
+		// $fields = array('Date', 'HourOfDay', 'Clicks', 'Impressions', 'Cost', 'AveragePosition', 'Conversions', 'ViewThroughConversions', $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank, 'VideoViews');
+		// $id  = '6284915288';
+		// $tipo = 'SEARCH';
+		// $startdate = '20160701';
+		// $enddate = '20160731';
+
+		// $array = \Relatorio\Services\AdsArray::DateReport($id, $fields, $tipo, $startdate, $enddate);
+
+		// $selected = null;
+
+
 class AdsArray {
+
+	private function campaigns($id) {
+
+		//set service
+		$user = new AdWordsUser();
+		$user->SetClientCustomerId($id);
+		$campaignService = $user->GetService('CampaignService', 'v201605');
+
+		// create selector
+		$selector = new Selector();
+		$selector->fields = ['Id','Name'];
+
+		//get service
+		$page = $campaignService->get($selector);
+		return $page->entries;
+	}
 
 	public static function DateReport($id, $fields, $tipo, $startdate, $enddate) {
 

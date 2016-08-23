@@ -16,8 +16,8 @@ return [
     |
     */
 
-    // 'driver' => env('MAIL_DRIVER', 'smtp'),
-    'driver' => 'sendmail',
+    'driver' => env('MAIL_DRIVER', 'smtp'),
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -29,8 +29,7 @@ return [
     |
     */
 
-    // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-    'host' => 'smtp.gmail.com',
+   'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +42,7 @@ return [
     |
     */
 
-    // 'port' => env('MAIL_PORT', 587),
-    'port' => 587,
+    'port' => env('MAIL_PORT', 465),
 
 
     /*
@@ -58,8 +56,7 @@ return [
     |
     */
 
-    // 'from' => ['address' => null, 'name' => null],
-        'from' => ['address' => 'adriel.pinheiro@clinks.com.br', 'name' => 'no-reply'],
+    'from' => ['address' => 'adriel.pinheiro@clinks.com.br', 'name' => 'Adriel Pinheiro'],
 
 
     /*
@@ -73,8 +70,7 @@ return [
     |
     */
 
-    // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-    'encryption' => 'tls',
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +84,6 @@ return [
     */
 
     'username' => env('MAIL_USERNAME'),
-    'username' => 'adriel.pinheiro@clinks.com.br',
 
     /*
     |--------------------------------------------------------------------------
@@ -101,8 +96,7 @@ return [
     |
     */
 
-    // 'password' => env('MAIL_PASSWORD'),
-    'password' => 'smileForever',
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

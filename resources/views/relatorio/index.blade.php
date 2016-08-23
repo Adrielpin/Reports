@@ -10,59 +10,66 @@ Relatório
 
 <script type="text/javascript">
 
-$("#gerar").click(function (){
-	drawChartCliques(null)
-	drawChartImpressoes(null)
-	drawChartCtr(null)
-	$('#graficos').show();
-});
+	$("#gerar").click(function (){
+		drawChartCliques(null)
+		drawChartImpressoes(null)
+		drawChartCtr(null)
+		$('#graficos').show();
+	});
 
-google.charts.load('current', {'packages':['corechart']});
+	google.charts.load('current', {'packages':['corechart']});
 
-$(window).resize(function(){
-	var height = (($(window).width())/3);
-	cliques.setOption('height', height);
-	cliques.draw();
+	$(window).resize(function(){
+		height = (($(window).width())/3);
+		cliques.setOption('height', height);
+		cliques.draw();
 
-	impressoes.setOption('height', height);
-	impressoes.draw();
-	
-	ctr.setOption('height', height);
-	ctr.draw();
+		impressoes.setOption('height', height);
+		impressoes.draw();
 
-});
+		ctr.setOption('height', height);
+		ctr.draw();
 
+	});
 
 </script>
 
-<div role="main" class='col-md-8'>
+<style>
+#report{
+	height: calc(100vh - 70px); 
+	overflow-y:scroll;
+}
+
+</style>
+
+<div class="col-xs-12 col-md-9" id='report'>
 
 	<div class='row'>
 
-		<div class=" form-group btn-group btn-group-xs" style='width:100%'>
+		<div class=" form-group btn-group" style='width:100%'>
 			<button type="button" class="btn btn-default btn-xs" value='BarChart' onclick='drawChartCliques(this.value)'>Barra</button>
 			<button type="button" class="btn btn-default btn-xs" value='ColumnChart' onclick='drawChartCliques(this.value)'>Coluna</button>
 			<button type="button" class="btn btn-default btn-xs" value='LineChart' onclick='drawChartCliques(this.value)'>Linha</button>
 		</div>
 
-		<div id='cliques' style='heigth:525px'></div>
+		<div id='cliques'></div>
 
 		<script type="text/javascript">
 
-			function drawChartCliques(value) {
+		function drawChartCliques(value) {
 
-				(value == null) ? value='ColumnChart' : value;
+			(value == null) ? value='ColumnChart' : value;
 
-				cliques = new google.visualization.ChartWrapper({
-					chartType: value,
-					dataTable: <?php print $clicks; ?>,
-					options: {'legend': 'top', 'height':(($(window).width())/3)},
-					containerId: 'cliques'
-				});
+			cliques = new google.visualization.ChartWrapper({
+				chartType: value,
+				dataTable: [['Data', 'Cliques'],[new Date('2016,06,01'), 1],[new Date('2016,06,02'), 5],[new Date('2016,06,03'), 3]],
+				options: {'legend': 'top', 'height':(($(window).width())/3)},
+				containerId: 'cliques'
+			});
 
-				cliques.draw();
+			cliques.draw();
 
-			}
+		}
 
 		</script>
 
@@ -76,7 +83,7 @@ $(window).resize(function(){
 			<button type="button" class="btn btn-default btn-xs" value='LineChart' onclick='drawChartImpressoes(this.value)'>Linha</button>
 		</div>
 
-		<div id='Impressoes' style='heigth:525px'></div>
+		<div id='Impressoes'></div>
 
 		<script type="text/javascript">
 
@@ -86,7 +93,7 @@ $(window).resize(function(){
 
 			impressoes = new google.visualization.ChartWrapper({
 				chartType: value,
-				dataTable: <?php print $impressions; ?>,
+				dataTable: [['Data', 'Impressoes'],[new Date('2016,06,01'), 1],[new Date('2016,06,02'), 5],[new Date('2016,06,03'), 3]],
 				options: {'legend': 'top', 'height':(($(window).width())/3)},
 				containerId: 'Impressoes'
 			});
@@ -108,23 +115,23 @@ $(window).resize(function(){
 
 		</div>
 
-		<div id='ctr' style='heigth:525px'></div>
+		<div id='ctr'></div>
 
 		<script type="text/javascript">
 
-			function drawChartCtr(value) {
+		function drawChartCtr(value) {
 
 			(value == null) ? value='ColumnChart' : value;
 
 			ctr = new google.visualization.ChartWrapper({
 				chartType: value,
-				dataTable: <?php print $ctr; ?>,
+				dataTable: [['Data', 'Ctr'],[new Date('2016,06,01'), 10],[new Date('2016,06,02'), 50],[new Date('2016,06,03'), 30]],
 				options: {'legend': 'top', 'height':(($(window).width())/3)},
 				containerId: 'ctr'
 			});
 
 			ctr.draw();
-			}
+		}
 
 		</script>
 
@@ -132,16 +139,52 @@ $(window).resize(function(){
 
 </div>
 
-<div class='col-md-1' fixed>
+<div class="col-md-1 hidden-xs">
+
 	<nav class="row" id="myScrollspy">
+
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#cliques">Cliques</a></li>
-			<li><a href="#Impressoes">Impressoes</a></li>
-			<li><a href="#ctr">Ctr</a></li>
+
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Datas<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#cliques">Cliques</a></li>
+					<li><a href="#Impressoes">Impressoes</a></li>
+					<li><a href="#ctr">Ctr</a></li>
+				</ul>
+			</li>
+
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Dia da semana<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#cliques">Cliques</a></li>
+					<li><a href="#Impressoes">Impressoes</a></li>
+					<li><a href="#ctr">Ctr</a></li>
+				</ul>
+			</li>
+
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Hora do dia<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#cliques">Cliques</a></li>
+					<li><a href="#Impressoes">Impressoes</a></li>
+					<li><a href="#ctr">Ctr</a></li>
+				</ul>
+			</li>
+
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Geografico<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#cliques">Cliques</a></li>
+					<li><a href="#Impressoes">Impressoes</a></li>
+					<li><a href="#ctr">Ctr</a></li>
+				</ul>
+			</li>
+
 		</ul>
+
 	</nav>
 
 </div>
-
 
 @stop
