@@ -23,18 +23,18 @@
 
 				<ul class="nav navbar-nav">
 
-					{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
+					{{ Form::open(array('class'=>'form-group')) }}
 
 					<div class="form-group">
 
-						{!! Form::label('contas', 'Conta', array('class' => 'control-label')) !!}
+						{!! Form::label('contas', 'Conta') !!}
 
-						{{ Form::select('contas', $campaigns, null, array('class' => 'form-control')) }}
+						{{ Form::select('contas', $campaigns, $prefer, array('class'=>'select-2')) }}
 
 						<script type="text/javascript">
 
 						if($(window).width() > 798){
-							$('#contas').select2({ width: 'resolve' });
+							$('.select-2').select2({ 'width': '100%' });
 						}
 						</script>
 
@@ -83,14 +83,14 @@
 					{{Form::close()}}
 
 					<div class="form-group btn-group-vertical" style=' width:100%;'>
-
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#metricasModal">metricas</button>
 						<button type="button" class="btn btn-info">Projeção</button>
 						<button type="button" class="btn btn-info">Desempenho</button>
 					</div>
 
 					<div class="form-group">
 
-						<button type="button" class="btn btn-warning btn-md" style='width:100%'><span class="glyphicon glyphicon-print"></span> Imprimir </button>
+						<button type="button" class="btn btn-warning btn-md" style='width:100%' data-toggle="modal" data-target="#linkModal"><span class="glyphicon glyphicon-print"></span> Imprimir </button>
 
 					</div>
 

@@ -1,24 +1,29 @@
 @extends('layouts.app')
 @section('title')
-	Cadastro de clientes
+Cadastro de clientes
 @stop
 
 @section('body')
-<h1>Cadastro de clientes</h1>
-{!! Form::open() !!}
-<div class="form-group">
-    {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
-    {!! Form::text('name',null, array_merge(['class' => 'form-control'])) !!}
+
+<div class='container'>
+
+	<div class='row'>
+
+		<h1>Cadastro de clientes</h1>
+
+	</div>
+
+	<div class="form-group">
+
+		{!! Form::label('analista', 'analista', array('class' => 'control-label')) !!}
+		{{ Form::select('analista', $analista, null, array('class' => 'form-control')) }}
+
+	</div>
+
+
+
+	{!! Form::close() !!}
+
 </div>
 
-<div class="form-group">
-    {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
-    {!! Form::text('name',null, array_merge(['class' => 'form-control'])) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
-    {!! Form::file('name',null, array_merge(['class' => 'form-control'])) !!}
-</div>
-{!! Form::close() !!}
 @stop

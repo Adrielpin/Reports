@@ -3,17 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 	<title> @yield('title') </title>
-
-
-	<!--Load the AJAX API-->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
 
@@ -24,7 +20,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/pt-BR.js"></script>
 
+	<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+
 	<style type="text/css">
+
 	body{
 		padding-top: 70px;
 	}
@@ -55,8 +54,7 @@
 					<!-- Authentication Links -->
 
 					<li><a href="{{ url('/login') }}">Login</a></li>
-					<li><a href="{{ url('/register') }}">Register</a></li>
-
+					
 				</ul>
 
 				@else
@@ -93,6 +91,16 @@
 	</nav>
 
 	<div class='container-fluid'>
+
+		<div class="flash-message">
+			@foreach (['danger', 'warning', 'success', 'info'] as $msg)
+			@if(Session::has('alert-' . $msg))
+
+			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+			@endif
+			@endforeach
+		</div>
+
 		@yield('body')
 	</div>
 

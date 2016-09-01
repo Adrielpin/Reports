@@ -2,88 +2,34 @@
 
 namespace App\Http\Controllers;
 
+// laravel Classes
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
-use Auth;
+// AdWords Classes
 use AdWordsUser;
 use Selector;
 use Paging;
 use AdWordsConstants;
-
 use Predicate;
 use DateRange;
 use ReportUtils;
 use ReportDefinition;
 
+use Relatorio\Services\AdsArray;
+use Relatorio\Services\oldmethods;
+
 class RelatorioController extends Controller {
-
-	private function GetAccounts() {
-
-		//sert service
-		$user = new AdWordsUser();
-		$user->SetClientCustomerId(Auth::user()->costumer_id);
-		$managedCustomerService = $user->GetService('ManagedCustomerService', 'v201605');
-
-		// Create selector.
-		$selector = new Selector();
-		$selector->fields = array('CustomerId',  'Name');
-		$selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
-		
-    	// Make the get request.
-		$graph = $managedCustomerService->get($selector);
-
-		if(isset($graph)){
-
-			$accounts = array();
-			$childLinks = array();
-			$form = array();
-
-			foreach ($graph->entries as $account) {
-
-				$accounts[$account->customerId] = $account->name;
-
-			}
-
-			foreach ($graph->links as $link) {
-
-				$childLinks[$accounts[$link->managerCustomerId]][$link->clientCustomerId] = $accounts[$link->clientCustomerId];
-
-			}
-			
-			foreach ($childLinks as $key_a => $values) {
-				foreach ($values as $key_b => $value) {
-					if(array_key_exists($value, $childLinks)){
-						unset($childLinks[$key_a][$key_b]);
-					}
-
-				}
-				
-			}
-
-			return $childLinks;
-		}
-
-		else {
-
-			redirect('/home');
-
-		}
-
-	}
 
 	public function index(){
 
-		$campaigns = $this->GetAccounts();
-		// $campaigns = ['a'=>'b'];
-
-		
-
-		return view('relatorio.index')->with(['campaigns' => $campaigns]);
+		$accounts = \Relatorio\Services\Contas::GetAccounts();
+		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts,'cliques'=>1, 'impressoes'=>1, 'ctr'=>1]);
 	}
 
-	public function view(){
+	public function report(){
 
 		$id  = '6284915288';
 		$tipo = 'SEARCH';
@@ -114,9 +60,52 @@ class RelatorioController extends Controller {
 		$reportUtils = new ReportUtils();
 		$returned = $reportUtils->DownloadReport($reportDefinition, null, $user, $options);
 
-		$cliques = \Relatorio\Services\AdsArray::dateCliques($returned);
+		$adsArrays = new AdsArray();
+		$cliques = $adsArrays->dateCliques($returned);
+		$impressoes = $adsArrays->dateImpressions($returned);
+		$ctr = $adsArrays->dateCtr($returned);
 
-		return $cliques;
+		$Arrays = array($cliques, $impressoes, $ctr);
 
-	} 
+		return $Arrays;
+
+	}
+
+	public function view(Request $request) {
+
+		$token = Crypt::decrypt($request->input('token'));
+		$a = Crypt::decrypt($request->input('a'));
+		$b = Crypt::decrypt($request->input('b'));
+		$c = Crypt::decrypt($request->input('c'));
+		$r = 'E';
+
+		if($c == 'SEARCH' || $c == 'SHOPPING'){
+			$parcela_impressao = 'SearchImpressionShare';
+			$parcela_impressao_orcamento = 'SearchBudgetLostImpressionShare';
+			$parcela_impressao_rank = 'SearchRankLostImpressionShare';
+		}
+
+		else {
+			$parcela_impressao = 'ContentImpressionShare';
+			$parcela_impressao_orcamento = 'ContentBudgetLostImpressionShare';
+			$parcela_impressao_rank = 'ContentRankLostImpressionShare';
+		}
+
+		$user = new AdWordsUser();
+		$user->SetClientCustomerId($a);
+		$user->LoadService('ReportDefinitionService', 'v201605');
+
+		$methodo = new oldmethods();
+		$data = $methodo->DateReportold($user, $b, $c, $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank);
+		$week = $methodo->weekReportold($user, $b, $c, $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank);
+		$hour = $methodo->hourReportold($user, $b, $c, $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank);
+		$geo = $methodo->geoReportold($user, $b, $c, $r);
+
+		if($token >= strtotime('today')){
+			return view('emails.relatorio')->with(['data'=>$data, 'week'=>$week, 'hour'=>$hour, 'geo'=>$geo, 'tipo' => $c]);
+		}
+		else{
+			return view('index');
+		}
+	}
 }

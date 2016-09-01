@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "googleads/googleads-php-lib": "^10.1",
         "khill/lavacharts" : "3.0.*",
-        "google/auth": "^0.10.0"
+        "google/auth": "^0.10.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     
     "require-dev": {
@@ -28,6 +29,7 @@
         "psr-4": {
             "App\\": "app/",
             "Agencias\\":"app/Agencias/",
+            "Clientes\\":"app/Clientes/",
             "Relatorio\\":"app/Relatorio/"
         }
     },

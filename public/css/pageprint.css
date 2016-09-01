@@ -1,0 +1,180 @@
+   @page{
+    size: 11.7in 8.3in;
+    margin: 0px;
+ }
+
+ @media screen{
+   body{
+      background-color: #696969;
+   }
+
+   .corpo{
+      width: 100%;
+      -webkit-print-color-adjust: exact;
+   }
+
+   #relatorio-clinks {
+      margin: 50px auto 100px auto;
+      width: 1100px;
+   }
+
+   #bi-content{
+      margin: 50px auto 100px auto;
+      width: 1100px;
+   }
+
+   #capa-desempenho{
+      background-image: url('img/Capa-Desempenho.png') !important;background-repeat: no-repeat !important; background-size:contain !important;
+   }
+
+   .capa{
+      background-color: white;
+      height:775px;
+      margin-top: 15px;
+   }
+
+   .border{
+      background-color: white;
+      margin-top: 15px;
+   }
+
+   .title{
+      width: 100%;
+      min-height: 40px;
+      text-align: center;
+      display:table;
+   }
+
+   .title h1{
+      font-size: 14pt;
+      color: #5b5b5f;
+      display:table-cell;
+      vertical-align:middle;
+      background-color: #c2c3c9;
+      background-image: url('img/BarraSuperior.png');
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size:contain;
+   }
+
+   .borda{
+      padding: 1cm 1cm 1cm 1cm;
+   }
+
+   .borda h5{
+      font-size: 12pt;
+      color: #5b5b5f;
+      display: block;
+      text-align: center;
+   }
+
+   .borda div{
+      margin: 5px auto 2px auto;
+   }
+
+   .borda h5{
+      font-size: 12pt;
+      color: #5b5b5f;
+      display: block;
+      text-align: center;
+   }
+
+   /*rodapé*/
+   .footer{
+      width:100%;
+      position:fixed;
+      margin-top: calc(100vh - 10%);
+   }
+
+   .footer button{
+      width: 70px;
+      height: 70px;
+      margin-left: calc(100vw - 7%);
+   }
+}
+
+@media print {
+
+   .head{
+      display:none;
+   }
+   .col-1{
+      display:none;
+   }
+
+   .col-2{
+      display:none;
+   }
+
+   .col-3{
+      display:block;
+      font-family: "Myriad Pro", "Myriad", "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+      -webkit-print-color-adjust: exact;
+   }
+
+   #capa-desempenho{
+      width: 100%;
+      height: 100%;
+      background-image: url('img/Capa-Desempenho.png') !important;background-repeat: no-repeat !important; background-size:contain !important;
+   }
+
+   /* capa */
+   .capa{
+      display: block
+      page-break-inside:avoid;
+      width: 100%;
+   }
+
+   .capa img{
+      width: 100%;
+   }
+
+   .border{
+      page-break-inside:avoid;
+      width: 100%;
+   }
+
+   .grafico{
+      margin-top: 10px;
+   }
+
+   .title{
+      width: 100%;
+      min-height: 40px;
+      text-align: center;
+      display:table;
+   }
+
+   .title h1{
+      font-size: 12pt;
+      color: #5b5b5f;
+      display:table-cell;
+      vertical-align:middle;
+      background-color: #c2c3c9 !important;
+      background-repeat: no-repeat !important;
+      background-position: right !important;
+      background-size:contain !important;
+      background-image: url('img/BarraSuperior.png') !important;
+   }
+
+   /*graficos*/
+   .borda{
+      padding: 1cm 1cm 1cm 1cm;
+   }
+
+   .borda div{
+      margin: 5px auto 2px auto;
+   }
+
+   .borda h5{
+      font-size: 12pt;
+      color: #5b5b5f;
+      display: block;
+      text-align: center;
+   }
+
+   /*rodapé*/
+   .footer{
+      display: none;
+   }
+}

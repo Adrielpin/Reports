@@ -9,9 +9,10 @@ use App\Http\Requests;
 class PerfilController extends Controller {
 
     public function show($id) {
-        
+
         $user = \App\User::find($id);
-        return view('Perfil.index')->with(['user'=>$user]);
+        $confis = \Clientes\Models\Config_email::all();
+        return view('Perfil.index')->with(['user'=>$user, 'confis'=>$confis]);
 
     }
 
@@ -26,5 +27,10 @@ class PerfilController extends Controller {
         return $id;
 
     }
+    
+    public function senha() {
+        //
+    }
+
 
 }
