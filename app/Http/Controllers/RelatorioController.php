@@ -12,6 +12,11 @@ use Selector;
 use Paging;
 use AdWordsConstants;
 
+use Predicate;
+use DateRange;
+use ReportUtils;
+use ReportDefinition;
+
 class RelatorioController extends Controller {
 
 	private function GetAccounts() {
@@ -79,111 +84,39 @@ class RelatorioController extends Controller {
 	}
 
 	public function view(){
-		$clicks = array(array('Data','Cliques'),
-			array(date('M d, Y',strtotime('2016-07-01')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-02')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-03')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-04')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-05')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-06')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-07')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-08')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-09')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-10')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-11')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-12')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-13')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-14')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-15')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-16')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-17')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-18')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-19')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-20')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-21')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-22')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-23')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-24')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-25')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-26')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-27')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-28')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-29')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-30')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-31')),rand(10,100)));
 
-		$clicks = json_encode($clicks);
+		$id  = '6284915288';
+		$tipo = 'SEARCH';
 
-		$impressions = array(array('Data','Impressoes'),
-			array(date('M d, Y',strtotime('2016-07-01')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-02')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-03')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-04')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-05')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-06')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-07')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-08')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-09')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-10')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-11')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-12')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-13')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-14')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-15')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-16')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-17')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-18')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-19')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-20')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-21')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-22')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-23')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-24')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-25')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-26')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-27')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-28')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-29')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-30')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-31')),rand(10,100)));
+		$parcela_impressao = 'SearchImpressionShare';
+		$parcela_impressao_orcamento = 'SearchBudgetLostImpressionShare';
+		$parcela_impressao_rank = 'SearchRankLostImpressionShare';
+		$fields = array('Date', 'HourOfDay', 'Clicks', 'Impressions', 'Cost', 'AveragePosition', 'Conversions', 'ViewThroughConversions', $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank, 'VideoViews');
 
-		$impressions = json_encode($impressions);
+		$user = new AdWordsUser();
+		$user->SetClientCustomerId($id);
+		$user->LoadService('ReportDefinitionService', 'v201605');
 
-		$ctr = array(array('Data','ctr'),
-			array(date('M d, Y',strtotime('2016-07-01')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-02')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-03')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-04')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-05')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-06')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-07')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-08')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-09')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-10')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-11')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-12')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-13')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-14')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-15')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-16')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-17')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-18')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-19')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-20')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-21')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-22')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-23')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-24')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-25')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-26')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-27')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-28')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-29')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-30')),rand(10,100)),
-			array(date('M d, Y',strtotime('2016-07-31')),rand(10,100)));
+		$selector = new Selector();
+		$selector->fields = $fields;
+		$selector->predicates[] = new Predicate('AdvertisingChannelType', 'EQUALS', array($tipo));
+		$selector->dateRange = new DateRange('20160601', '20160630');
 
-		$ctr = json_encode($ctr);
+		$reportDefinition = new ReportDefinition();
+		$reportDefinition->selector = $selector;
+		$reportDefinition->reportName = 'Criteria performance report';
+		$reportDefinition->dateRangeType = 'CUSTOM_DATE';
+		$reportDefinition->reportType = 'CAMPAIGN_PERFORMANCE_REPORT';
+		$reportDefinition->downloadFormat = 'XML';
 
-		return [$clicks, $impressions, $ctr];
+		$options = array('version' => 'v201605', 'skipReportHeader' => true, 'skipColumnHeader' => true, 'skipReportSummary' => true , 'includeZeroImpressions' => false);
+
+		$reportUtils = new ReportUtils();
+		$returned = $reportUtils->DownloadReport($reportDefinition, null, $user, $options);
+
+		$cliques = \Relatorio\Services\AdsArray::dateCliques($returned);
+
+		return $cliques;
+
 	} 
 }

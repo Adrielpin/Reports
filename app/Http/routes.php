@@ -62,7 +62,7 @@ Route::group(['as' => 'clientes.','prefix'=>'clientes'], function() {
 
 Route::group(['as' => 'relatorio.','prefix'=>'relatorio'], function() {
 	Route::get('', ['as' => 'index', 'uses' => 'RelatorioController@index']);
-	Route::get('report', ['as' => 'index', 'uses' => 'RelatorioController@view']);
+	Route::get('report', ['as' => 'report', 'uses' => 'RelatorioController@view']);
 });
 
 Route::group(['as' => 'perfil.','prefix'=>'perfil'], function() {

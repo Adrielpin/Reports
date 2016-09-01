@@ -10,27 +10,52 @@ Relatório
 
 <script type="text/javascript">
 
-	$("#gerar").click(function (){
-		drawChartCliques(null)
-		drawChartImpressoes(null)
-		drawChartCtr(null)
-		$('#graficos').show();
+google.charts.load('current', {'packages':['corechart']});
+
+function drawChartCliques(value) {
+
+	(value == null) ? value='ColumnChart' : value;
+
+	cliques = new google.visualization.ChartWrapper({
+		chartType: value,
+		dataTable: [['Data', 'Cliques'],[new Date('2016,06,01'), 1],[new Date('2016,06,02'), 5],[new Date('2016,06,03'), 3]],
+		options: {'legend': 'top', 'height':(($(window).width())/3)},
+		containerId: 'cliques'
 	});
 
-	google.charts.load('current', {'packages':['corechart']});
+	cliques.draw();
 
-	$(window).resize(function(){
-		height = (($(window).width())/3);
-		cliques.setOption('height', height);
-		cliques.draw();
+}
 
-		impressoes.setOption('height', height);
-		impressoes.draw();
+$("#gerar").click(function (){
 
-		ctr.setOption('height', height);
-		ctr.draw();
+	drawChartCliques('ColumnChart');
 
-	});
+	var url = '/relatorio/report';
+	var id = $('#contas').val();
+	var tipo = $('#tipos').val();
+
+	$.get(url, {'id':id, 'type': tipo}, function (response){
+		console.log(response);
+		cliques.setDataTable(response);
+	}).done(function (){cliques.draw(); });
+		
+
+});
+
+
+$(window).resize(function(){
+	height = (($(window).width())/3);
+	cliques.setOption('height', height);
+	cliques.draw();
+
+	impressoes.setOption('height', height);
+	impressoes.draw();
+
+	ctr.setOption('height', height);
+	ctr.draw();
+
+});
 
 </script>
 
