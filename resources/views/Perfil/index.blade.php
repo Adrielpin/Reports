@@ -45,42 +45,40 @@
 
 	</div>
 
-	<div class='panel'>
+	<table class="table table-hover">
 
-		<table class="table table-condensed">
+		<thead>
 
-			<thead>
-				<tr>	
-					<th>id</th>
-					<th>User</th>
-					<th>conta</th>
-					<th>tipo</th>
-					<th>periodo</th>
-					<th>dimesão geografica</th>
-					<th>ações</th>
-				</tr>
-			</thead>
+			<tr>	
+				<th>id</th>
+				<th>User</th>
+				<th>conta</th>
+				<th>tipo</th>
+				<th>periodo</th>
+				<th>dimesão geografica</th>
+				<th>ações</th>
+			</tr>
+		</thead>
 
-			<tbody>
-				@foreach ($confis as $conf)
-				<tr>
-						<td>{{ $conf->id }}</td>
-						<td>{{ $conf->user_id }}</td>
-						<td>{{ $conf->conta }}</td>
-						<td>{{ $conf->tipo }}</td>
-						<td>{{ $conf->periodo }}</td>
-						<td>{{ $conf->grafico }}</td>
-					<td>
-						<a href="{{ route('emails.edit', $conf->id) }}">editar</a>
-						<a href="{{ route('emails.destroy', $conf->id) }}">remover</a>
-					</td>
-				</tr>
+		<tbody>
+			@foreach ($confis as $conf)
+			<tr>
+				<td>{{ $conf->id }}</td>
+				<td>{{ $conf->user_id }}</td>
+				<td>{{ $conf->conta }}</td>
+				<td>{{ $conf->tipo }}</td>
+				<td>{{ $conf->periodo }}</td>
+				<td>{{ $conf->grafico }}</td>
+				<td>
+					<a href="{{ route('emails.edit', $conf->id) }}">editar</a>
+					<a href="{{ route('emails.destroy', $conf->id) }}">remover</a>
+				</td>
+			</tr>
 			@endforeach
-			</tbody>
+		</tbody>
 
-		</table>
+	</table>
 
-	</div>
 
 </div>
 

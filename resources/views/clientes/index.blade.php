@@ -8,58 +8,50 @@ Clientes
 
 @section('body')
 
-<div class='container-fluid'>
+<div class='container'>
 
-	<table class='table'>
+	<h1>Clientes</h1>
 
-		<h1>Clientes cadastrados</h1>
+	<a href="{{ route('usuarios.create') }}" class='btn btn-primary' role='button'>Adicionar analista/Cliente</a>
 
-		{{ Form::open(array('route' => 'clientes.index', 'method' => 'GET') }}
-		<div class="input-group">
 
-			{{ Form::select('analista', $analista, null, array('class' => 'form-control')) }}
-			<span class="input-group-btn">
-				{{ Form::submit('selecionar', array('class' => 'btn btn-default' )) }}
-			</span>
+	{{ Form::model(null, array('route' => array('clientes.show'), 'method'=>'get')) }}	
 
-			{{ Form::close() }}
-		</div>
+	<div class="input-group">
 
+		
+		{{ Form::select('analista', $analistas, $selected, array('class' => 'form-control' )) }}
+
+		<span class="input-group-btn">
+			{{ Form::submit('selecionar', array('class' => 'btn btn-default' )) }}
+		</span>
+		
+	</div>
+
+	{{ Form::close() }}
+
+	<table class="table table-hover">
 		<thead>
-
-			<tr>
-
-				<th> Id </th>
-				<th> Nome </th>
-				<th> E-mail </th>
-				<th> Typo </th>
-				<th> Ações </th>
-
+			<tr>	
+				<th>#</th>
+				<th>Nome</th>
+				<th></th>
 			</tr>
-
 		</thead>
-
 		<tbody>
-
-			@foreach($clientes as $cliente)
-			
+			@foreach ($clientes as $row)
 			<tr>
-
-				<td> {{$cliente->id}}</td>
-				<td> {{$cliente->name}}</td>
-				<td> {{$cliente->email}}</td>
-				<td> {{$cliente->type_id}}</td>
-				<td><a href="#" class='btn btn-default'> editar </a><a href="" class='btn btn-default'>Remover</a></td>
-
+				<td>{{ $row->id }}</td>
+				<td>{{ $row->name }}</td>
+				<td>
+					<a href="{{ route('usuarios.edit', $row->id) }}">editar</a>
+					<a href="{{ route('usuarios.destroy', $row->id) }}">remover</a>
+				</td>
 			</tr>
-
-			@endforeach()
-
+			@endforeach
 		</tbody>
-
 	</table>
 
 </div>
-
 
 @stop

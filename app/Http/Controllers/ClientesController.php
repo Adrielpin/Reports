@@ -8,29 +8,102 @@ use App\Http\Requests;
 
 class ClientesController extends Controller
 {
-    public function index(){
-        
-        $find = \app\User::all();
-        foreach ($find as $row) {
-            $analista[$row->id] = $row->name;           
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() {
+
+        $analistas = \app\User::where('type_id', 2)->get();
+        $analista[] = 'Todos';
+        foreach ($analistas as $value) {
+            $analista[$value->id] = $value->name;
         }
 
-    	$clientes = \App\User::all();
-    	return view('clientes.index')->with(['clientes'=>$clientes, 'analista'=>$analista]);
-	}
+        $clientes = \app\User::where('type_id', 1)->get();
+        return view('clientes.index')->with(['clientes'=>$clientes, 'analistas'=>$analista, 'selected'=>null]);
+    }
 
-    public function create(){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-    	$tipos = \Clientes\Models\Usuario_tipo::all()->except(4);
-    	foreach ($tipos as $tipo) {
-			$type[$tipo->id] = $tipo->tipo;    		
-    	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-    	$find = \app\User::all();
-    	foreach ($find as $row) {
-			$analista[$row->id] = $row->name;    		
-    	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request) {
 
-    	return view('clientes.create')->with(['tipos'=>$type, 'analista'=>$analista]);
+        $id = $request->analista;
+
+        if($id == 0){
+           return redirect('clientes/');
+        }
+        
+        $find = \App\Relationship::where('analysts', $id)->get(['customers'])->toArray();
+        $analista[] = 'Todos';
+
+        $analistas = \app\User::where('type_id', 2)->get();
+        foreach ($analistas as $value) {
+            $analista[$value->id] = $value->name;
+        }
+
+        $clientes = \app\User::find($find);
+        return view('clientes.index')->with(['clientes'=>$clientes, 'analistas'=>$analista, 'selected'=>$id]);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('', ['as' => 'index', 'uses' => 'ClientesController@index']);
 		Route::get('criar', ['as' => 'create','uses' => 'ClientesController@create']);
 		Route::post('salvar', ['as' => 'store','uses' => 'ClientesController@store']);
-		Route::get('{id}/visualizar', ['as' => 'show','uses' => 'ClientesController@show']);
+		Route::get('visualizar', ['as' => 'show','uses' => 'ClientesController@show']);
 		Route::get('{id}/editar', ['as' => 'edit','uses' => 'ClientesController@edit']);
 		Route::post('{id}/atualizar', ['as' => 'update','uses' => 'ClientesController@update']);
 		Route::get('{id}/remover', ['as' => 'destroy','uses' => 'ClientesController@destroy']);
