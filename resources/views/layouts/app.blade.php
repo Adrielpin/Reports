@@ -33,22 +33,28 @@
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style='z-index: 99999'>
+
 		<div class="container-fluid">
+
 			<div class="navbar-header">
+
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+
 				<a class="navbar-brand" href="{{ url('home') }}">Analyzee</a>
+
 			</div>
 
 			<div class="collapse navbar-collapse" id="navigationbar">
 
 
 				@if (Auth::guest())
+
 				<ul class="nav navbar-nav navbar-right">
 
 					<!-- Authentication Links -->
@@ -58,7 +64,9 @@
 				</ul>
 
 				@else
+
 				<ul class="nav navbar-nav">
+
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> Agencias <span class="caret"></span></a>
 
 						<ul class="dropdown-menu">
@@ -67,25 +75,35 @@
 						</ul>
 
 					</li>
+
 					<li><a href="{!! route('clientes.index') !!}">Clientes</a></li>
 					<li><a href="{!! route('relatorio.index') !!}">Relatorio</a></li>
+
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown">
+
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>
 
 						<ul class="dropdown-menu" role="menu">
+
 							<li><a href="{{ url('/perfil/'. Auth::id()) }}"> Perfil </a></li>
 							<li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+
 						</ul>
+
 					</li>
+
 				</ul>
+
 				@endif
+
 			</div>
+
 		</div>
 
 	</nav>
@@ -93,15 +111,21 @@
 	<div class='container-fluid'>
 
 		<div class="flash-message">
+
 			@foreach (['danger', 'warning', 'success', 'info'] as $msg)
+
 			@if(Session::has('alert-' . $msg))
 
 			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+
 			@endif
+
 			@endforeach
+
 		</div>
 
 		@yield('body')
+		
 	</div>
 
 </div>

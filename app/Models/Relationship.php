@@ -1,10 +1,10 @@
 <?php
 
-namespace Relatorio\Models;
+namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cidade extends Model
+class Relationship extends Model
 {
     //
 }

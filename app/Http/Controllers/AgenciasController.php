@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Models\Agencia;
 
 class AgenciasController extends Controller
 {
@@ -24,7 +25,7 @@ class AgenciasController extends Controller
     public function index()
     {
 
-        $agencias = \Agencias\Models\Agencia::all();
+        $agencias = Agencia::all();
         return view('agencias.index')->with(['agencias' => $agencias]);
 
     }

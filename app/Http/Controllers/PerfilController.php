@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Models\User;
+use Models\Config_email;
+
+use Relatorio\Contas;
+
 class PerfilController extends Controller {
 
     public function show($id) {
 
-        $user = \App\User::find($id);
-        $confis = \Clientes\Models\Config_email::all();
+        $user = User::find($id);
+        $accounts = Contas::GetIds();
+
+        $confis = Config_email::whereIn('conta', $accounts)->get();
+
         return view('Perfil.index')->with(['user'=>$user, 'confis'=>$confis]);
 
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Agencias\Models;
+namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Agencia extends Model
+class Usuario_tipo extends Model
 {
     //
 }

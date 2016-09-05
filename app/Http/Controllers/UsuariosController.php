@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Models\User;
+use Models\Usuario_tipo;
+
 use Hash;
 use Session;
 
@@ -13,13 +16,13 @@ use Session;
 class UsuariosController extends Controller {
 
     public function index () {   
-        $rows = \app\User::all();
+        $rows = User::all();
         return view('usuarios.index')->with(['rows'=>$rows]);
     }
 
     public function create() {
 
-        $tipos = \Clientes\Models\Usuario_tipo::all()->except(4);
+        $tipos = Usuario_tipo::all()->except(4);
         
         foreach ($tipos as $tipo) {
 
@@ -33,12 +36,12 @@ class UsuariosController extends Controller {
 
     public function store (Request $request) {
 
-        $u = new \app\User;
+        $u = new User();
         $u->name = $request->name;
         $u->email = $request->email;
         $u->costumer_id = $request->conta;
         $u->type_id = $request->tipos;
-        $u->password = Hash::make($request->newPassword);
+        $u->password = Hash::make($request->senha);
         $u->save();
 
         $request->session()->flash('alert-success', 'Usuário cadastrado com sucesso.');
@@ -49,13 +52,13 @@ class UsuariosController extends Controller {
 
     public function edit ($id) {
 
-       $row = \app\User::find($id);
+       $row = User::find($id);
        return view('usuarios.edit')->with(['row'=>$row]);
     }
 
     public function update (Request $request, $id) {
 
-        $u = \app\User::find($id);
+        $u = User::find($id);
         $u->name = $request->name;
         $u->email = $request->email;
         $u->costumer_id = $request->conta;
@@ -69,7 +72,7 @@ class UsuariosController extends Controller {
 
     public function destroy ($id) {
 
-        $u = \app\User::find($id);
+        $u = User::find($id);
         $u->delete();
 
         Session::flash('message', 'Usuario removido!');

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Models\User;
+
+use Models\Relationship;
+
 class ClientesController extends Controller
 {
     /**
@@ -15,13 +19,13 @@ class ClientesController extends Controller
      */
     public function index() {
 
-        $analistas = \app\User::where('type_id', 2)->get();
+        $analistas = User::where('type_id', 2)->get();
         $analista[] = 'Todos';
         foreach ($analistas as $value) {
             $analista[$value->id] = $value->name;
         }
 
-        $clientes = \app\User::where('type_id', 1)->get();
+        $clientes = User::where('type_id', 1)->get();
         return view('clientes.index')->with(['clientes'=>$clientes, 'analistas'=>$analista, 'selected'=>null]);
     }
 
@@ -60,15 +64,15 @@ class ClientesController extends Controller
            return redirect('clientes/');
         }
         
-        $find = \App\Relationship::where('analysts', $id)->get(['customers'])->toArray();
+        $find = Relationship::where('analysts', $id)->get(['customers'])->toArray();
         $analista[] = 'Todos';
 
-        $analistas = \app\User::where('type_id', 2)->get();
+        $analistas = User::where('type_id', 2)->get();
         foreach ($analistas as $value) {
             $analista[$value->id] = $value->name;
         }
 
-        $clientes = \app\User::find($find);
+        $clientes = User::find($find);
         return view('clientes.index')->with(['clientes'=>$clientes, 'analistas'=>$analista, 'selected'=>$id]);
 
     }

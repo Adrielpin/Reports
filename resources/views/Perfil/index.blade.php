@@ -70,8 +70,27 @@
 				<td>{{ $conf->periodo }}</td>
 				<td>{{ $conf->grafico }}</td>
 				<td>
-					<a href="{{ route('emails.edit', $conf->id) }}">editar</a>
-					<a href="{{ route('emails.destroy', $conf->id) }}">remover</a>
+
+					@if(Auth::user()->type_id == 1)
+						
+						@if(Auth::user()->id == $conf->user_id)
+						
+							<a href="{{ route('emails.edit', $conf->id) }}">editar</a>
+							<a href="{{ route('emails.destroy', $conf->id) }}">remover</a>
+
+						@else
+						
+							<a>Não pode ser removido</a>
+						
+						@endif
+
+					@else
+
+						<a href="{{ route('emails.edit', $conf->id) }}">editar</a>
+						<a href="{{ route('emails.destroy', $conf->id) }}">remover</a>
+
+					@endif
+
 				</td>
 			</tr>
 			@endforeach

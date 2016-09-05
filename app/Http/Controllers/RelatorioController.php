@@ -18,14 +18,16 @@ use DateRange;
 use ReportUtils;
 use ReportDefinition;
 
-use Relatorio\Services\AdsArray;
-use Relatorio\Services\oldmethods;
+use Relatorio\Contas;
+use Relatorio\AdsArray;
+use Relatorio\oldmethods;
 
 class RelatorioController extends Controller {
 
 	public function index(){
 
-		$accounts = \Relatorio\Services\Contas::GetAccounts();
+		$accounts = Contas::GetAccounts();
+
 		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts,'cliques'=>1, 'impressoes'=>1, 'ctr'=>1]);
 	}
 

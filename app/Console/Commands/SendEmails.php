@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Models\Config_email;
 use Mail;
 use Crypt;
 use Request;
@@ -43,7 +44,7 @@ class SendEmails extends Command
     public function handle()
     {   
 
-        $confis = \Clientes\Models\Config_email::all();
+        $confis = Config_email::all();
         $url= getHostByName(getHostName());
         $token = Crypt::encrypt(strtotime('today +1 month'));
 

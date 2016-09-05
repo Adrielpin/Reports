@@ -1,5 +1,5 @@
 <?php
-namespace Relatorio\Services;
+namespace Relatorio;
 
 class AdsArray {
 

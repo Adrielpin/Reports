@@ -8,7 +8,7 @@
  *
  */
 
-namespace Relatorio\Services;
+namespace Relatorio;
 
 use AdWordsUser;
 use Selector;
