@@ -25,7 +25,8 @@ class AgenciasController extends Controller
     public function index()
     {
 
-        $agencias = Agencia::all();
+        $agencias = \Models\Administrator::find(1);
+        dd($agencias);
         return view('agencias.index')->with(['agencias' => $agencias]);
 
     }

@@ -201,7 +201,7 @@ class oldmethods {
 				} 
 			}
 		}
-		$t_parcela_de_impresao = ($t_impressoes/$t_parcela)*100;
+		$t_parcela_de_impresao = ($t_parcela == 0 ) ? 0 : ($t_impressoes/$t_parcela)*100;
 
 		//este bloco constroi arrays individuais da consulta para graficos
 		//author adriel Pinheiro
@@ -229,13 +229,13 @@ class oldmethods {
 		}
 
 		$cpc_tabela = array(array('Data', 'CPC', array('type' => 'string', 'role' =>'annotation')));
-		$t_cpc = $t_investimento/$t_cliques;
+		$t_cpc = ($t_cliques == 0 ) ? 0 : $t_investimento/$t_cliques;
 		foreach($cpc as &$Row){
 			array_push($cpc_tabela, array($Row[0], (float)$Row[1], 'R$ '.number_format((float)$Row[1],2,',','.')));
 		}
 
 		$ctr_tabela = array(array('Data', 'CTR %', array('type' => 'string', 'role' =>'annotation')));
-		$t_ctr = ($t_cliques/$t_impressoes)*100;
+		$t_ctr = ($t_impressoes == 0) ? 0 : ($t_cliques/$t_impressoes)*100;
 		foreach($ctr as &$Row){
 			array_push($ctr_tabela, array($Row[0], (float)$Row[1], number_format((float)$Row[1],2,',','.').' %'));
 		}
@@ -252,7 +252,7 @@ class oldmethods {
 			$t_pontos += $Row[1];
 		}
 
-		$t_posicao = $t_pontos/$t_impressoes;
+		$t_posicao = ($t_impressoes == 0) ? 0 : $t_pontos/$t_impressoes;
 
 		$conversao_tabela = array(array('Data','Conversões', array('type' => 'string', 'role' =>'annotation')));
 		$t_conversao = 0;
@@ -262,13 +262,13 @@ class oldmethods {
 		}
 
 		$custo_por_conversao_tabela = array(array('Data','Custo por conversão total', array('type' => 'string', 'role' =>'annotation')));
-		$t_custo_por_conversao  = $t_investimento/$t_conversao;
+		$t_custo_por_conversao  = ($t_conversao == 0) ? 0 : $t_investimento/$t_conversao;
 		foreach($custo_por_conversao as &$Row){
 			array_push($custo_por_conversao_tabela, array($Row[0], (float)$Row[1], 'R$ '.number_format((float)$Row[1],2,',','.')));
 		}
 
 		$taxa_de_conversao_tabela = array(array('Data','Taxa de conversão %', array('type' => 'string', 'role' =>'annotation')));
-		$t_taxa_de_conversao = ($t_conversao/$t_cliques)*100;
+		$t_taxa_de_conversao = ($t_cliques == 0) ? 0 : ($t_conversao/$t_cliques)*100;
 		foreach($taxa_de_conversao as &$Row){
 			array_push($taxa_de_conversao_tabela, array($Row[0], (float)$Row[1], number_format((float)$Row[1],2,',','.').' %'));
 		}
@@ -288,13 +288,13 @@ class oldmethods {
 		}
 
 		$taxa_de_conversao_total_tabela = array(array('Data','Taxa de conversão total %', array('type' => 'string', 'role' =>'annotation')));
-		$t_taxa_de_conversao_total = ($t_conversao_total/$t_cliques)*100;
+		$t_taxa_de_conversao_total = ($t_cliques == 0) ? 0 : ($t_conversao_total/$t_cliques)*100;
 		foreach($taxa_de_conversao_total as &$Row){
 			array_push($taxa_de_conversao_total_tabela, array($Row[0], (float)$Row[1], number_format((float)$Row[1],2,',','.').' %'));
 		}
 
 		$custo_por_conversao_total_tabela = array(array('Data','Custo por conversão total', array('type' => 'string', 'role' =>'annotation')));
-		$t_custo_por_conversao_total  = $t_investimento/$t_conversao_total;
+		$t_custo_por_conversao_total  = ($t_conversao_total == 0) ? 0 : $t_investimento/$t_conversao_total;
 		foreach($investimento as &$a){
 			foreach($conversao_total as &$b){
 				if($a[0] == $b[0]){

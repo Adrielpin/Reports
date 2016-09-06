@@ -22,12 +22,14 @@ Novo agendamento de e-mail
 		<script type="text/javascript">
 
 		if($(window).width() > 798){
-			$('.select-2').select2({'width':'100%'});
+			$('[name="contas"]').select2({'width':'100%'});
 		}
 
 		</script>
 
 	</div>
+
+
 
 	<div class="form-group">
 

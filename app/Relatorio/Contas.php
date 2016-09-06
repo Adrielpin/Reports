@@ -63,7 +63,6 @@ class Contas {
 
 		}	
 
-		
 	}
 
 	static public function GetIds() {
@@ -91,6 +90,7 @@ class Contas {
 		}
 
 		return $accounts;
+		
 	}
 
 	static public function GetName($account) {
@@ -118,6 +118,7 @@ class Contas {
 		}
 
 		return $name;
+
 	}
 
 }

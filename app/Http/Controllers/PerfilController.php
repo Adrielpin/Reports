@@ -19,7 +19,6 @@ class PerfilController extends Controller {
         $accounts = Contas::GetIds();
 
         $confis = Config_email::whereIn('conta', $accounts)->get();
-
         return view('Perfil.index')->with(['user'=>$user, 'confis'=>$confis]);
 
     }

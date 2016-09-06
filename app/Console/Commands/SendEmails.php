@@ -4,7 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+//my models
+use Models\User;
 use Models\Config_email;
+use Relatorio\Contas;
+
 use Mail;
 use Crypt;
 use Request;
@@ -36,6 +40,8 @@ class SendEmails extends Command
 
     }
 
+
+
     /**
      * Execute the console command.
      *
@@ -50,9 +56,10 @@ class SendEmails extends Command
 
         foreach($confis as $conf){
 
-            $conta = Crypt::encrypt($conf->conta);
-            $periodo = Crypt::encrypt($conf->periodo);
-            $tipo = Crypt::encrypt($conf->tipo);
+            $conta = $conf->conta;
+            $periodo = $conf->periodo;
+            $tipo = $cont->tipo;
+            //$tipo = Crypt::encrypt($conf->tipo);
 
             $attach = 'token='.$token.'&a='.$conta.'&b='.$periodo.'&c='.$tipo;
 

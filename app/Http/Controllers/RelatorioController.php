@@ -29,6 +29,7 @@ class RelatorioController extends Controller {
 		$accounts = Contas::GetAccounts();
 
 		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts,'cliques'=>1, 'impressoes'=>1, 'ctr'=>1]);
+		
 	}
 
 	public function report(){
@@ -111,5 +112,6 @@ class RelatorioController extends Controller {
 		else{
 			return view('index');
 		}
+
 	}
 }

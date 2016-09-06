@@ -75,7 +75,6 @@
 						</ul>
 
 					</li>
-
 					<li><a href="{!! route('clientes.index') !!}">Clientes</a></li>
 					<li><a href="{!! route('relatorio.index') !!}">Relatorio</a></li>
 
