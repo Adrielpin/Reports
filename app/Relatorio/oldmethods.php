@@ -18,6 +18,8 @@ use Predicate;
 use ReportUtils;
 use ReportDefinition;
 
+use Models\Cidade;
+
 class oldmethods {
 
 	public static function DateReportold ($user, $b, $c, $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank) {
@@ -49,6 +51,7 @@ class oldmethods {
 			$Row = str_getcsv($Row, ",");
 			array_push($arr, $Row);
 		}
+
 		asort($arr);
 
 		$cliques = array();
@@ -72,14 +75,20 @@ class oldmethods {
 			array_push($conversao_de_visualizacao, array($date, (int)str_replace(',','',$Row[6])));
 
 			if($Row[7] == '< 10%'){
+				
 				if($Row[9] == '> 90%'){
+					
 					array_push($parcela, array($date, (int)$Row[2], 100-(91+$Row[8])));	
+
 				}
+
 				array_push($parcela, array($date, (int)$Row[2], 100-($Row[8]+$Row[9])));
 			}
 
-			else{
+			else {
+				
 				array_push($parcela, array($date, (int)$Row[2], (float)$Row[7]));
+
 			}
 
 		}
@@ -88,7 +97,8 @@ class oldmethods {
 
 		$total_de_impressoes = array();
 		foreach($parcela as &$a){
-			array_push($total_de_impressoes, array($a[0], ($a[2] == 0) ? 0 :round(($a[1]/$a[2])*100, 2)));
+
+			array_push($total_de_impressoes, array($a[0], ($a[2] == 0) ? 0 : round(($a[1]/$a[2])*100, 2)));
 
 		}
 
@@ -111,7 +121,7 @@ class oldmethods {
 			foreach ($impressoes as &$i) {
 				if($i[0] == $p[0]){
 
-					array_push($posicao_real, array($i[0], round((float)($p[1]/$i[1]),1)));
+					array_push($posicao_real, array($i[0], ($i[1] == 0) ? 0 : round(($p[1]/$i[1]),1)));
 				}
 			}
 		}
@@ -120,7 +130,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($cliques as &$b){
 				if($a[0] == $b[0]){
-					array_push($cpc, array($a[0], round($a[1]/$b[1], 2)));
+					array_push($cpc, array($a[0], ($b[1] == 0) ? 0 : round($a[1]/$b[1], 2)));
 				}
 			}	
 		}
@@ -129,7 +139,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($impressoes as &$b){
 				if($a[0] == $b[0]){
-					array_push($ctr, array($a[0], round(($a[1]/$b[1])*100, 2)));
+					array_push($ctr, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100, 2)));
 				} 
 			}
 		}
@@ -138,7 +148,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($conversao as &$b){
 				if($a[0] == $b[0]){
-					array_push($custo_por_conversao, array($a[0], ($b[1] == 0)? 0 : round(($a[1]/$b[1]), 2)));
+					array_push($custo_por_conversao, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1]), 2)));
 				} 
 			}
 		}
@@ -165,7 +175,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($conversao as &$b){
 				if($a[0] == $b[0]){
-					array_push($taxa_de_conversao, array($a[0], round(($b[1]/$a[1])*100, 2)));
+					array_push($taxa_de_conversao, array($a[0], ($a[1] == 0) ? 0 : round(($b[1]/$a[1])*100, 2)));
 				} 
 			}
 		}
@@ -174,7 +184,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($conversao_total as &$b){
 				if($a[0] == $b[0]){
-					array_push($taxa_de_conversao_total, array($a[0], round(($b[1]/$a[1])*100, 2)));
+					array_push($taxa_de_conversao_total, array($a[0], ($a[1] == 0) ? 0 : round(($b[1]/$a[1])*100, 2)));
 				} 
 			}
 		}
@@ -533,7 +543,7 @@ class oldmethods {
 			foreach ($impressoes as &$i) {
 				if($i[0] == $p[0]){
 
-					array_push($posicao_real, array($i[0], round((float)($p[1]/$i[1]),1)));
+					array_push($posicao_real, array($i[0], ($i[1] == 0) ? 0 : round((float)($p[1]/$i[1]),1)));
 				}
 			}
 		}
@@ -542,7 +552,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($cliques as &$b){
 				if($a[0] == $b[0]){
-					array_push($cpc, array($a[0], round($a[1]/$b[1], 2)));
+					array_push($cpc, array($a[0], ($b[1] == 0) ? 0 : round($a[1]/$b[1], 2)));
 				}
 			}	
 		}
@@ -551,7 +561,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($impressoes as &$b){
 				if($a[0] == $b[0]){
-					array_push($ctr, array($a[0], round(($a[1]/$b[1])*100, 2)));
+					array_push($ctr, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100, 2)));
 				} 
 			}
 		}
@@ -560,7 +570,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($conversao as &$b){
 				if($a[0] == $b[0]){
-					array_push($custo_por_conversao, array($a[0], round(($a[1]/$b[1]), 2)));
+					array_push($custo_por_conversao, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1]), 2)));
 				} 
 			}
 		}
@@ -578,7 +588,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($conversao_total as &$b){
 				if($a[0] == $b[0]){
-					array_push($custo_por_conversao_total, array($a[0], round(($a[1]/$b[1]), 2)));
+					array_push($custo_por_conversao_total, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1]), 2)));
 				} 
 			}
 		}
@@ -587,7 +597,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($conversao as &$b){
 				if($a[0] == $b[0]){
-					array_push($taxa_de_conversao, array($a[0], round(($b[1]/$a[1])*100, 2)));
+					array_push($taxa_de_conversao, array($a[0], ($a[1] == 0) ? 0 : round(($b[1]/$a[1])*100, 2)));
 				} 
 			}
 		}
@@ -596,7 +606,7 @@ class oldmethods {
 		foreach($cliques as &$a){
 			foreach($conversao_total as &$b){
 				if($a[0] == $b[0]){
-					array_push($taxa_de_conversao_total, array($a[0], round(($b[1]/$a[1])*100, 2)));
+					array_push($taxa_de_conversao_total, array($a[0], ($a[1] == 0) ? 0 : round(($b[1]/$a[1])*100, 2)));
 				} 
 			}
 		}
@@ -607,7 +617,7 @@ class oldmethods {
 		foreach($impressoes as &$a){
 			foreach($total_de_impressoes as &$b){
 				if($a[0] == $b[0]){
-					array_push($total_parcela_hour, array($a[0], round(($a[1]/$b[1])*100, 2)));
+					array_push($total_parcela_hour, array($a[0], ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100, 2)));
 					$t_impressoes += $a[1];
 					$t_parcela += $b[1];
 				} 
@@ -710,7 +720,7 @@ class oldmethods {
 		foreach($investimento as &$a){
 			foreach($conversao_total as &$b){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1]),2);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1]),2);
 					array_push($custo_por_conversao_total_tabela, array($a[0], $v, 'R$ '.number_format((float)$v,2,',','.')));
 				} 
 			}
@@ -737,7 +747,7 @@ class oldmethods {
 
 			foreach($investimento as &$a){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1])*100,2);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100,2);
 					array_push($investimento_x_parcela_hour, array($a[0], $a[1], 'R$ '.number_format($a[1],2,',','.'), $v, 'R$ '.number_format((float)$v,2,',','.')));
 					$t_investimento_x_parcela += $v;
 				} 
@@ -745,7 +755,7 @@ class oldmethods {
 
 			foreach($cliques as &$a){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1])*100);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100);
 					array_push($cliques_x_parcela, array($a[0], (int)$a[1], number_format($a[1],0,',','.'), (int)$v , number_format($v,0,',','.')));
 					$t_cliques_x_parcela += $v;
 				} 
@@ -753,7 +763,7 @@ class oldmethods {
 
 			foreach($impressoes as &$a){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1])*100);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100);
 					array_push($impressoes_x_parcela, array($a[0], (int)$a[1], number_format($a[1],0,',','.'), (int)$v , number_format($v,0,',','.')));
 					$t_impressoes_x_parcela += $v;
 				} 
@@ -761,7 +771,7 @@ class oldmethods {
 
 			foreach($conversao as &$a){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1])*100);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100);
 					array_push($conversao_x_parcela, array($a[0], (int)$a[1], number_format($a[1],0,',','.'), (int)$v , number_format($v,0,',','.')));
 					$t_conversao_x_parcela += $v;
 				} 
@@ -769,7 +779,7 @@ class oldmethods {
 
 			foreach($conversao_total as &$a){
 				if($a[0] == $b[0]){
-					$v = round(($a[1]/$b[1])*100);
+					$v = ($b[1] == 0) ? 0 : round(($a[1]/$b[1])*100);
 					array_push($conversao_total_x_parcela, array($a[0], (int)$a[1], number_format($a[1],0,',','.'), (int)$v , number_format($v,0,',','.')));
 					$t_conversao_total_x_parcela += $v;
 				} 
@@ -1312,7 +1322,7 @@ class oldmethods {
 		}
 
 
-		$regions = \Relatorio\Models\Cidade::find($find);
+		$regions = Cidade::find($find);
 		$names = array();
 
 		foreach($regions as $row){

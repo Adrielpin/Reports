@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Adriel Pinheiro <adriel.pinheiro@clinks.com.br>
+ */
 
 namespace Relatorio;
 
@@ -51,11 +54,13 @@ class Contas {
 			}
 
 			return $childLinks;
+
 		}
 
 		else{
 
 			return $accounts;
+
 		}	
 
 		
