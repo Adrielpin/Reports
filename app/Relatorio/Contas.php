@@ -93,4 +93,31 @@ class Contas {
 		return $accounts;
 	}
 
+	static public function GetName($account) {
+
+		//sert service
+		$user = new AdWordsUser();
+		$user->SetClientCustomerId($account);
+		$managedCustomerService = $user->GetService('ManagedCustomerService', 'v201605');
+
+		// Create selector.
+		$selector = new Selector();
+		$selector->fields = array('CustomerId',  'Name');
+		
+    	// Make the get request.
+		$graph = $managedCustomerService->get($selector);
+
+		$accounts = array();
+		$childLinks = array();
+		$form = array();
+
+		foreach ($graph->entries as $account) {
+
+			$name = $account->name;
+
+		}
+
+		return $name;
+	}
+
 }

@@ -103,8 +103,10 @@ class RelatorioController extends Controller {
 		$hour = $methodo->hourReportold($user, $b, $c, $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank);
 		$geo = $methodo->geoReportold($user, $b, $c, $r);
 
+		$name = Contas::GetName($a);
+
 		if($token >= strtotime('today')){
-			return view('emails.relatorio')->with(['data'=>$data, 'week'=>$week, 'hour'=>$hour, 'geo'=>$geo, 'tipo' => $c]);
+			return view('emails.relatorio')->with(['data'=>$data, 'week'=>$week, 'hour'=>$hour, 'geo'=>$geo, 'tipo' => $c, 'name' => $name]);
 		}
 		else{
 			return view('index');
