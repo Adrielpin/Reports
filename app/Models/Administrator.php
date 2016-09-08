@@ -14,7 +14,7 @@ class Administrator extends Model {
 
 	public function engineers() {
 
-		return $this->belongsToMany('Models\Enginner');
+		return $this->hasManyThrough('Models\Enginner','Administrators_id','id');
 
 	}
 }

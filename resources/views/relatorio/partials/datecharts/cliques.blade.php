@@ -4,9 +4,8 @@ cliques = new google.visualization.ChartWrapper({
 	dataTable: null,
 	options: {'legend': 'top', 'height':(($(window).width())/3)},
 	containerId: 'cliques'
-});koer
+});
 </script>
-
 <div class='row'>
 
 	<div class='row '>

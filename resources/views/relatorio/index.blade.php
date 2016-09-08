@@ -29,15 +29,15 @@ Relatório
 			{{-- condições data inteira, mês e ano --}}
 
 			@if($cliques == 1)
-			@include('relatorio.partials.cliques')
+			@include('relatorio.partials.datecharts.cliques')
 			@endif
 
 			@if($impressoes == 1)
-			@include('relatorio.partials.impressoes')
+			@include('relatorio.partials.datecharts.impressoes')
 			@endif
 
 			@if($ctr == 1)
-			@include('relatorio.partials.ctr')
+			@include('relatorio.partials.datecharts.ctr')
 			@endif
 
 		</div>

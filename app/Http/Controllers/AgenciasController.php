@@ -22,11 +22,11 @@ class AgenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
 
-        $agencias = \Models\Administrator::find(1);
-        dd($agencias);
+    public function index() {
+
+        $agencias = \Models\Agency::find(1);
+        dd($agencias->administrators->Engineers);
         return view('agencias.index')->with(['agencias' => $agencias]);
 
     }
@@ -36,9 +36,11 @@ class AgenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+
+    public function create() {
+        
         return view('agencias.create');
+
     }
 
     /**
@@ -47,9 +49,11 @@ class AgenciasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+
+    public function store(Request $request) {
+        
         return 'salvar agencia';
+
     }
 
     /**
@@ -58,8 +62,9 @@ class AgenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+
+    public function show($id) {
+        
         return 'visualizar agencia id:' . $id;
     }
 
@@ -69,8 +74,8 @@ class AgenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+
+    public function edit($id) {
         return 'editar agencia';
     }
 
@@ -81,9 +86,11 @@ class AgenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+
+    public function update(Request $request, $id) {
+        
         return 'salvar agencias';
+
     }
 
     /**
@@ -92,6 +99,7 @@ class AgenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         return 'deletar ' . $id;

@@ -14,7 +14,7 @@
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Custom CSS -->
+	<!-- Custom CSS -->Material Theme
 	<link href="css/landing-page.css" rel="stylesheet">
 
 	<!-- Custom Fonts -->
