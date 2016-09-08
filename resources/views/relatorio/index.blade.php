@@ -8,18 +8,8 @@ Relatório
 
 @include('relatorio.partials.form')
 
-<style>
-#report{
-	height: calc(100vh - 70px); 
-	overflow-y:scroll;
-}
 
-</style>
-
-<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
-
-
-<div class="col-xs-12 col-md-9" id='report'>
+<div class="col-xs-12 col-md-9" id='report' style='float: right;'>
 
 	<div class='container-fluid'>
 
@@ -28,17 +18,23 @@ Relatório
 			{{-- Graficos de anuncios por data --}}
 			{{-- condições data inteira, mês e ano --}}
 
-			@if($cliques == 1)
 			@include('relatorio.partials.datecharts.cliques')
-			@endif
 
-			@if($impressoes == 1)
 			@include('relatorio.partials.datecharts.impressoes')
-			@endif
 
-			@if($ctr == 1)
+			@include('relatorio.partials.datecharts.cpc')
+
+			@include('relatorio.partials.datecharts.investimento')
+
 			@include('relatorio.partials.datecharts.ctr')
-			@endif
+
+			@include('relatorio.partials.datecharts.posicao')
+
+			@include('relatorio.partials.datecharts.conversao')
+
+			@include('relatorio.partials.datecharts.custo_conversao')
+
+			@include('relatorio.partials.datecharts.taxa_conversao')
 
 		</div>
 
@@ -53,14 +49,35 @@ Relatório
 $(window).resize(function(){
 
 	height = (($(window).width())/3);
-	cliques.setOption('height', height);
-	cliques.draw();
 
-	impressoes.setOption('height', height);
-	impressoes.draw();
+	dateCliques.setOption('height', height);
+	dateCliques.draw();
 
-	ctr.setOption('height', height);
-	ctr.draw();
+	dateImpressoes.setOption('height', height);
+	dateImpressoes.draw();
+
+	dateCpc.setOption('height', height);
+	dateCpc.draw();
+
+	dateInvestiemnto.setOption('height', height);
+	dateInvestiemnto.draw();
+
+	dateCtr.setOption('height', height);
+	dateCtr.draw();
+
+	datePosicao.setOption('height', height); 
+	datePosicao.draw();
+
+	dateConversao.setOption('height', height);
+	dateConversao.draw();
+
+	dateCustoConversao.setOption('height', height);
+	dateCustoConversao.draw();
+
+	dateTaxaConversao.setOption('height', height);
+	dateTaxaConversao.draw();
+
+	
 
 });
 
@@ -80,15 +97,17 @@ function Go(){
 	var tipo = $('#tipos').val();
 
 	$.get(url, {'id':id, 'type': tipo}, function (response){
-		
-		(typeof cliques != 'undefined') ? (cliques.setDataTable(response[0]), cliques.draw()) : cliques = null;
-		(typeof impressoes != 'undefined') ? (impressoes.setDataTable(response[1]), impressoes.draw()) : impressoes = null;
-		(typeof ctr != 'undefined') ? (ctr.setDataTable(response[2]), ctr.draw()) : cliques = null;
+		(typeof dateCliques != 'undefined') ? (dateCliques.setDataTable(response[0]), dateCliques.draw()) : dateCliques = null;
+		(typeof dateImpressoes != 'undefined') ? (dateImpressoes.setDataTable(response[1]), dateImpressoes.draw()) : dateImpressoes = null;
+		(typeof dateCpc != 'undefined') ? (dateCpc.setDataTable(response[2]), dateCpc.draw()) : dateCpc = null;
+		(typeof dateInvestimento != 'undefined') ? (dateInvestimento.setDataTable(response[3]), dateInvestimento.draw()) : dateInvestimento = null;
+		(typeof dateCtr != 'undefined') ? (dateCtr.setDataTable(response[4]), dateCtr.draw()) : dateCtr = null;
+		(typeof datePosicao != 'undefined') ? (datePosicao.setDataTable(response[5]), datePosicao.draw()) : datePosicao = null;
+		(typeof dateConversao != 'undefined') ? (dateConversao.setDataTable(response[6]), dateConversao.draw()) : dateConversao = null;
+		(typeof dateCustoConversao != 'undefined') ? (dateCustoConversao.setDataTable(response[7]), dateCustoConversao.draw()) : dateCustoConversao = null;
+		(typeof dateTaxaConversao != 'undefined') ? (dateTaxaConversao.setDataTable(response[8]), dateTaxaConversao.draw()) : dateTaxaConversao = null;
 
 	}).done(function (){
-		
-		impressoes.draw();
-		ctr.draw();
 		alert('Concluido');
 
 	}).fail(function() {

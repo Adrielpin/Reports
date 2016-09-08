@@ -124,7 +124,7 @@
 </div>
 
 <!-- Modal Metricas-->
-<div class="modal fade" id="metricasModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="metricasModal" tabindex="-1" role="dialog" aria-labelledby="modalMetricas">
 
   <div class="modal-dialog" role="document">
 
@@ -230,7 +230,7 @@
 
 </div>
 
-<!-- Modal palavras-->
+<!-- Modal Link-->
 <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
   <div class="modal-dialog" role="document">

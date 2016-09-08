@@ -1,4 +1,4 @@
-<div class='col-xs-12 col-md-3'>
+<div class='col-xs-12 col-md-3' style='position: static'>
 
 	{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
 

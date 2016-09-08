@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 // laravel Classes
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Crypt;
+
 use Illuminate\Contracts\Encryption\DecryptException;
+
+use Auth;
+use Crypt;
 
 // AdWords Classes
 use AdWordsUser;
@@ -18,56 +21,43 @@ use DateRange;
 use ReportUtils;
 use ReportDefinition;
 
-use Relatorio\Contas;
-use Relatorio\AdsArray;
-use Relatorio\oldmethods;
+use Relatorio\requestData;
+use Relatorio\contas;
+use Relatorio\dateArrays;
+use Relatorio\oldMethods;
 
 class RelatorioController extends Controller {
 
-	public function show(Request $request) {
+	public function show() {
 
-		$accounts = Contas::GetAccounts();
-		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts,'cliques'=>1, 'impressoes'=>1, 'ctr'=>1]);
+		$user = new AdWordsUser();
+		$user->SetClientCustomerId(Auth::user()->costumer_id);
+
+		$accounts = new contas();
+		$accounts = $accounts->GetAccounts($user);
+		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts]);
 
     }
 
 	public function report(Request $request){
 
-		$id = $request->id;
-		$tipo = $request->type;
 
-		$parcela_impressao = 'SearchImpressionShare';
-		$parcela_impressao_orcamento = 'SearchBudgetLostImpressionShare';
-		$parcela_impressao_rank = 'SearchRankLostImpressionShare';
-		$fields = array('Date', 'HourOfDay', 'Clicks', 'Impressions', 'Cost', 'AveragePosition', 'Conversions', 'ViewThroughConversions', $parcela_impressao, $parcela_impressao_orcamento, $parcela_impressao_rank, 'VideoViews');
+		$values = new requestData();
+		$values = $values->request($request);
 
-		$user = new AdWordsUser();
-		$user->SetClientCustomerId($id);
-		$user->LoadService('ReportDefinitionService', 'v201605');
+		$adsArrays = new dateArrays();
+		$cliques = $adsArrays->cliques($values);
+		$impressoes = $adsArrays->impressoes($values);
+		$cpc = $adsArrays->cpc($values);
+		$investimento = $adsArrays->investimento($values);
+		$ctr = $adsArrays->ctr($values);
+		$posicao = $adsArrays->position($values);
+		$conversao = $adsArrays->conversao($values);
+		$custoConversao = $adsArrays->custoConversao($values);
+		$taxaConversao = $adsArrays->taxaConversao($values);
 
-		$selector = new Selector();
-		$selector->fields = $fields;
-		$selector->predicates[] = new Predicate('AdvertisingChannelType', 'EQUALS', array($tipo));
-		$selector->dateRange = new DateRange('20160601', '20160630');
 
-		$reportDefinition = new ReportDefinition();
-		$reportDefinition->selector = $selector;
-		$reportDefinition->reportName = 'Criteria performance report';
-		$reportDefinition->dateRangeType = 'CUSTOM_DATE';
-		$reportDefinition->reportType = 'CAMPAIGN_PERFORMANCE_REPORT';
-		$reportDefinition->downloadFormat = 'XML';
-
-		$options = array('version' => 'v201605', 'skipReportHeader' => true, 'skipColumnHeader' => true, 'skipReportSummary' => true , 'includeZeroImpressions' => false);
-
-		$reportUtils = new ReportUtils();
-		$returned = $reportUtils->DownloadReport($reportDefinition, null, $user, $options);
-
-		$adsArrays = new AdsArray();
-		$cliques = $adsArrays->dateCliques($returned);
-		$impressoes = $adsArrays->dateImpressions($returned);
-		$ctr = $adsArrays->dateCtr($returned);
-
-		$Arrays = array($cliques, $impressoes, $ctr);
+		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao);
 
 		return $Arrays;
 

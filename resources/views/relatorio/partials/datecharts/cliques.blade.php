@@ -1,11 +1,12 @@
 <script type="text/javascript">
-cliques = new google.visualization.ChartWrapper({
+dateCliques = new google.visualization.ChartWrapper({
 	chartType: 'ColumnChart',
 	dataTable: null,
 	options: {'legend': 'top', 'height':(($(window).width())/3)},
-	containerId: 'cliques'
+	containerId: 'date_Cliques'
 });
 </script>
+
 <div class='row'>
 
 	<div class='row '>
@@ -13,9 +14,9 @@ cliques = new google.visualization.ChartWrapper({
 		<div class='col-xs-6 col-md-6'>
 
 			<div class="btn-group" style='width:100%'>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setChartType("BarChart"); cliques.draw()'><i class="fa fa-bar-chart" style='transform: rotate(-90deg) scaleY(-1);'></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setChartType("ColumnChart"); cliques.draw()'><i class="fa fa-bar-chart"></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setChartType("LineChart"); cliques.draw()'><i class="fa fa-line-chart"></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setChartType("BarChart"); dateCliques.draw()'><i class="fa fa-bar-chart" style='transform: rotate(-90deg) scaleY(-1);'></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setChartType("ColumnChart"); dateCliques.draw()'><i class="fa fa-bar-chart"></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setChartType("LineChart"); dateCliques.draw()'><i class="fa fa-line-chart"></i></button>
 			</div>
 
 		</div>
@@ -23,10 +24,10 @@ cliques = new google.visualization.ChartWrapper({
 		<div class='col-xs-6 col-md-6'>
 
 			<div class="btn-group" style='width:100%'>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setOption("colors", ["red"]); cliques.draw()'><i class="fa fa-stop" style='color:red'></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setOption("colors", ["blue"]); cliques.draw()'><i class="fa fa-stop" style='color:blue'></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setOption("colors", ["orange"]); cliques.draw()'><i class="fa fa-stop" style='color:orange'></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick='cliques.setOption("colors", ["green"]); cliques.draw()'><i class="fa fa-stop" style='color:green'></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setOption("colors", ["red"]); dateCliques.draw()'><i class="fa fa-stop" style='color:red'></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setOption("colors", ["blue"]); dateCliques.draw()'><i class="fa fa-stop" style='color:blue'></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setOption("colors", ["orange"]); dateCliques.draw()'><i class="fa fa-stop" style='color:orange'></i></button>
+				<button type="button" class="btn btn-default btn-xs" onclick='dateCliques.setOption("colors", ["green"]); dateCliques.draw()'><i class="fa fa-stop" style='color:green'></i></button>
 			</div>
 
 		</div>
@@ -35,7 +36,7 @@ cliques = new google.visualization.ChartWrapper({
 
 	<div class='row'>
 
-		<div id='cliques'></div>
+		<div id='date_Cliques' style="heigth: calc(vw100%/3)"></div>
 
 	</div>
 

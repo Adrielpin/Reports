@@ -28,6 +28,8 @@
 		padding-top: 70px;
 	}
 	</style>
+	
+	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
 
 </head>
 

@@ -2,18 +2,17 @@
 
 namespace Relatorio;
 
-use Auth;
 use AdWordsUser;
 use Selector;
 use AdWordsConstants;
 
-class Contas {
+class contas {
 
-	static public function GetAccounts() {
+	static public function GetAccounts($user) {
 
 		//sert service
-		$user = new AdWordsUser();
-		$user->SetClientCustomerId(Auth::user()->costumer_id);
+		// $user = new AdWordsUser();
+		// $user->SetClientCustomerId($id);
 		$managedCustomerService = $user->GetService('ManagedCustomerService', 'v201605');
 
 		// Create selector.
