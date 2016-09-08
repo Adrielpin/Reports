@@ -45,7 +45,7 @@
 
       <div class="modal-body">
       	{!! Form::label('campanhas', 'Campanhas', array('class' => 'control-label')) !!}
-        {{Form::select('contas', ['1'=>'camapanha 1', '2'=>'nome bem grandao pra ve como fica na aba de camapanha 2', '3'=>'ipsum lorem', '4'=>'Ma oeemmmm'], null, array('class' => 'selectpicker', 'data-live-search'=>'true', 'multiple data-actions-box'=>'true')) }}
+        {{Form::select('campanhas', ['1'=>'camapanha 1', '2'=>'nome bem grandao pra ve como fica na aba de camapanha 2', '3'=>'ipsum lorem', '4'=>'Ma oeemmmm'], null, array('class' => 'selectpicker', 'data-live-search'=>'true', 'multiple data-actions-box'=>'true')) }}
       </div>
 
       <div class="modal-footer">

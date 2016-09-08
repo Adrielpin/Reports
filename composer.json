@@ -36,7 +36,7 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php",
-            "vendor/googleads/googleads-php-lib/src/Google/Api/Ads/AdWords/Util/v201603"
+            "vendor/googleads/googleads-php-lib/src/Google/Api/Ads/AdWords/Util/v201605"
         ]
     },
     

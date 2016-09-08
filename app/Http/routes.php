@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['as' => 'relatorio.','prefix'=>'relatorio'], function() {
 
-		Route::get('', ['as' => 'index', 'uses' => 'RelatorioController@index']);
+		Route::get('', ['as' => 'show', 'uses' => 'RelatorioController@show']);
 		Route::get('report', ['as' => 'report', 'uses' => 'RelatorioController@report']);
 		Route::post('imprimir', ['as' => 'print', 'uses' => 'RelatorioController@print']);
 		

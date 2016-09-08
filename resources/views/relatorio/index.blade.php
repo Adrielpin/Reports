@@ -46,48 +46,6 @@ Relatório
 
 </div>
 
-{{-- <div class="col-md-1 hidden-xs">
-
-	<nav class="row" id="myScrollspy">
-
-		<ul class="nav nav-pills nav-stacked">
-
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Datas<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#cliques">Cliques</a></li>
-					<li><a href="#impressoes">Impressoes</a></li>
-					<li><a href="#ctr">Ctr</a></li>
-				</ul>
-			</li>
-
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Dia da semana<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Dimensão</a></li>
-				</ul>
-			</li>
-
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Hora do dia<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Dimensão</a></li>
-				</ul>
-			</li>
-
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Geografico<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Dimensão</a></li>
-				</ul>
-			</li>
-
-		</ul>
-
-	</nav>
-
-</div> --}}
-
 <!--Load the AJAX API-->
 
 <script type="text/javascript">
@@ -107,7 +65,7 @@ $(window).resize(function(){
 });
 
 $("#gerar").click(function (){
-	alert("here");
+	// alert("here");
 	Go();
 });
 

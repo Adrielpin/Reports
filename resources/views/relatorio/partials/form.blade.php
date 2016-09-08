@@ -1,106 +1,78 @@
-<div class='col-md-2 col-xs-12'>
+<div class='col-xs-12 col-md-3'>
 
-	<div class='row'>
+	{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
 
-		<nav class="navbar navbar-default">
+	<div class="form-group">
 
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
+		{!! Form::label('contas', 'Conta') !!}
 
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+		{{ Form::select('contas', $campaigns, $prefer, array('class'=>'select-2')) }}
 
-				<a class="navbar-brand hidden-md">Filtros</a>
+		<script type="text/javascript">
 
-			</div>
+			if($(window).width() > 798){
+				$('.select-2').select2({ 'width': '100%' });
+			}
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="navbar-collapse-2">
+		</script>
 
-				<ul class="nav navbar-nav">
+	</div>
 
-					{{ Form::open(array('class'=>'form-group')) }}
+	<div class="form-group">
 
-					<div class="form-group">
+		{!! Form::label('tipos', 'Tipo de conta', array('class' => 'control-label')) !!}
 
-						{!! Form::label('contas', 'Conta') !!}
+		{{Form::select('tipos', array('SEARCH' => 'Search', 'DISPLAY' => 'Display', 'SHOPPING' => 'Shopping', 'GMAIL' => 'Gmail', 'VIDEO' => 'Video', 'MOBILE' => 'Mobile'), null, array('class' => 'form-control')) }}
+	</div>
 
-						{{ Form::select('contas', $campaigns, $prefer, array('class'=>'select-2')) }}
+	<div class="form-group">
 
-						<script type="text/javascript">
+		{!! Form::label('periodos', 'Periodo', array('class' => 'control-label')) !!}
 
-						if($(window).width() > 798){
-							$('.select-2').select2({ 'width': '100%' });
-						}
-						</script>
+		{{Form::select('periodos', array('TODAY'=>'Hoje','YESTERDAY'=>'Ontem','LAST_MONTH'=>'Mês Anterior', 'Personalizado'=>'Personalizado'), null, array('class' => 'form-control')) }}
 
-					</div>
+	</div>
 
-					<div class="form-group">
+	@include('relatorio.partials.modal')
 
-						{!! Form::label('tipos', 'Tipo de conta', array('class' => 'control-label')) !!}
+	<script type="text/javascript">
 
-						{{Form::select('tipos', array('SEARCH' => 'Search', 'DISPLAY' => 'Display', 'SHOPPING' => 'Shopping', 'GMAIL' => 'Gmail', 'VIDEO' => 'Video', 'MOBILE' => 'Mobile'), null, array('class' => 'form-control')) }}
-					</div>
+		$('#periodos').change(function () {
+			if ($(this).val() == "Personalizado") {
+				$("#dateModal").modal();
+			}
+		});
 
-					<div class="form-group">
+	</script>
 
-						{!! Form::label('periodos', 'Periodo', array('class' => 'control-label')) !!}
+	<div class=" form-group btn-group-vertical" style=' width:100%;'>
 
-						{{Form::select('periodos', array('TODAY'=>'Hoje','YESTERDAY'=>'Ontem','LAST_MONTH'=>'Mês Anterior', 'Personalizado'=>'Personalizado'), null, array('class' => 'form-control')) }}
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#campanhasModal">Campanhas</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#gruposModal">Grupos</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#palavraModal">Palavras</button>
 
-					</div>
+	</div>
 
-					@include('relatorio.partials.modal')
+	
 
-					<script type="text/javascript">
-					
-					$('#periodos').change(function () {
-						if ($(this).val() == "Personalizado") {
-							$("#dateModal").modal();
-						}
-					});
+	<div class="form-group">
 
-					</script>
+		<button type="button" id='gerar' class='btn btn-success' style='width:100%'>Gerar</button>
+	</div>
 
-					<div class=" form-group btn-group-vertical" style=' width:100%;'>
+	{{Form::close()}}
 
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#campanhasModal">Campanhas</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#gruposModal">Grupos</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#palavraModal">Palavras</button>
-					</div>
+	<div class="form-group btn-group-vertical" style=' width:100%;'>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#metricasModal">metricas</button>
+		<button type="button" class="btn btn-info">Projeção</button>
+		<button type="button" class="btn btn-info">Desempenho</button>
+	</div>
 
-					<div class="form-group">
+	<div class="form-group">
 
-						<button class="btn btn-success" type="button" id='gerar' style='width:100%'>Gerar</button>
+		<button type="button" class="btn btn-warning btn-md" style='width:100%' data-toggle="modal" data-target="#linkModal"><span class="glyphicon glyphicon-print"></span> Imprimir </button>
 
-					</div>
-
-					{{Form::close()}}
-
-					<div class="form-group btn-group-vertical" style=' width:100%;'>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#metricasModal">metricas</button>
-						<button type="button" class="btn btn-info">Projeção</button>
-						<button type="button" class="btn btn-info">Desempenho</button>
-					</div>
-
-					<div class="form-group">
-
-						<button type="button" class="btn btn-warning btn-md" style='width:100%' data-toggle="modal" data-target="#linkModal"><span class="glyphicon glyphicon-print"></span> Imprimir </button>
-
-					</div>
-
-				</ul>
-
-			</div>
-
-		</div><!-- /.navbar-collapse -->
-
-	</nav>
+	</div>
 
 
 </div>

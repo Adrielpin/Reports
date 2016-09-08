@@ -1,7 +1,4 @@
 <?php
-/**
- * @author Adriel Pinheiro <adriel.pinheiro@clinks.com.br>
- */
 
 namespace Relatorio;
 

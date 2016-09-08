@@ -24,18 +24,17 @@ use Relatorio\oldmethods;
 
 class RelatorioController extends Controller {
 
-	public function index(){
+	public function show(Request $request) {
 
 		$accounts = Contas::GetAccounts();
-
 		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts,'cliques'=>1, 'impressoes'=>1, 'ctr'=>1]);
-		
-	}
 
-	public function report(){
+    }
 
-		$id  = '6284915288';
-		$tipo = 'SEARCH';
+	public function report(Request $request){
+
+		$id = $request->id;
+		$tipo = $request->type;
 
 		$parcela_impressao = 'SearchImpressionShare';
 		$parcela_impressao_orcamento = 'SearchBudgetLostImpressionShare';

@@ -33,7 +33,7 @@
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style='z-index: 99999'>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
 		<div class="container-fluid">
 
@@ -76,7 +76,7 @@
 
 					</li>
 					<li><a href="{!! route('clientes.index') !!}">Clientes</a></li>
-					<li><a href="{!! route('relatorio.index') !!}">Relatorio</a></li>
+					<li><a href="{!! route('relatorio.show') !!}">Relatorio</a></li>
 
 				</ul>
 
