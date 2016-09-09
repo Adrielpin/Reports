@@ -7,7 +7,7 @@ dateImpressoes = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateImpression'>
 
 	<div class='row '>
 

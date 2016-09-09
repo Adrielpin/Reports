@@ -1,6 +1,8 @@
 <?php 
 namespace Relatorio;
 
+use getDate;
+
 use AdWordsUser;
 use Selector;
 use Paging;
@@ -23,7 +25,11 @@ class requestData {
 		$selector = new Selector();
 		$selector->fields = $fields;
 		$selector->predicates[] = new Predicate('AdvertisingChannelType', 'EQUALS', array($request->type));
-		$selector->dateRange = new DateRange('20160601', '20160630');
+
+		$date = new getDates();
+		$date = $date->getDate($request);
+
+		$selector->dateRange = new DateRange($date['start'], $date['end']);
 
 		$reportDefinition = new ReportDefinition();
 		$reportDefinition->selector = $selector;

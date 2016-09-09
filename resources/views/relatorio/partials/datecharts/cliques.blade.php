@@ -7,7 +7,7 @@ dateCliques = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateClick'>
 
 	<div class='row '>
 

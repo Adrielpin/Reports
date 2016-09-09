@@ -7,7 +7,7 @@ dateTaxaConversao = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateConversionHate'>
 
 	<div class='row'>
 

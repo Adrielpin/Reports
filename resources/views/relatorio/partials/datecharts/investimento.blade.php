@@ -7,7 +7,7 @@ dateInvestimento = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateCost'>
 
 	<div class='row'>
 

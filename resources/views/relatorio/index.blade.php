@@ -1,17 +1,34 @@
 @extends('layouts.app')
 
 @section('title')
+
 Relatório
-@stop
+
+@stop()
 
 @section('body')
 
-@include('relatorio.partials.form')
 
 
-<div class="col-xs-12 col-md-9" id='report' style='float: right;'>
+<div class='col-xs-12 col-sm-3 col-md-3 col-lg-2'>
+
+	{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
+
+		@include('relatorio.partials.form')
+
+		@include('relatorio.partials.modal')
+
+	{{ Form::close() }}
+
+</div>
+
+
+
+<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10" id='report' style='float: right;'>
 
 	<div class='container-fluid'>
+
+		<div id="prog"></div>
 
 		<div class='class-*-12'>
 
@@ -46,76 +63,82 @@ Relatório
 
 <script type="text/javascript">
 
-$(window).resize(function(){
+	$(window).resize(function(){
 
-	height = (($(window).width())/3);
+		height = (($(window).width())/3);
 
-	dateCliques.setOption('height', height);
-	dateCliques.draw();
+		dateCliques.setOption('height', height);
+		dateCliques.draw();
 
-	dateImpressoes.setOption('height', height);
-	dateImpressoes.draw();
+		dateImpressoes.setOption('height', height);
+		dateImpressoes.draw();
 
-	dateCpc.setOption('height', height);
-	dateCpc.draw();
+		dateCpc.setOption('height', height);
+		dateCpc.draw();
 
-	dateInvestiemnto.setOption('height', height);
-	dateInvestiemnto.draw();
+		dateInvestimento.setOption('height', height);
+		dateInvestimento.draw();
 
-	dateCtr.setOption('height', height);
-	dateCtr.draw();
+		dateCtr.setOption('height', height);
+		dateCtr.draw();
 
-	datePosicao.setOption('height', height); 
-	datePosicao.draw();
+		datePosicao.setOption('height', height); 
+		datePosicao.draw();
 
-	dateConversao.setOption('height', height);
-	dateConversao.draw();
+		dateConversao.setOption('height', height);
+		dateConversao.draw();
 
-	dateCustoConversao.setOption('height', height);
-	dateCustoConversao.draw();
+		dateCustoConversao.setOption('height', height);
+		dateCustoConversao.draw();
 
-	dateTaxaConversao.setOption('height', height);
-	dateTaxaConversao.draw();
+		dateTaxaConversao.setOption('height', height);
+		dateTaxaConversao.draw();
 
-	
 
-});
 
-$("#gerar").click(function (){
-	// alert("here");
-	Go();
-});
-
-$(document).ready(function (){
-	Go();
-})
-
-function Go(){
-
-	var url = '/relatorio/report';
-	var id = $('#contas').val();
-	var tipo = $('#tipos').val();
-
-	$.get(url, {'id':id, 'type': tipo}, function (response){
-		(typeof dateCliques != 'undefined') ? (dateCliques.setDataTable(response[0]), dateCliques.draw()) : dateCliques = null;
-		(typeof dateImpressoes != 'undefined') ? (dateImpressoes.setDataTable(response[1]), dateImpressoes.draw()) : dateImpressoes = null;
-		(typeof dateCpc != 'undefined') ? (dateCpc.setDataTable(response[2]), dateCpc.draw()) : dateCpc = null;
-		(typeof dateInvestimento != 'undefined') ? (dateInvestimento.setDataTable(response[3]), dateInvestimento.draw()) : dateInvestimento = null;
-		(typeof dateCtr != 'undefined') ? (dateCtr.setDataTable(response[4]), dateCtr.draw()) : dateCtr = null;
-		(typeof datePosicao != 'undefined') ? (datePosicao.setDataTable(response[5]), datePosicao.draw()) : datePosicao = null;
-		(typeof dateConversao != 'undefined') ? (dateConversao.setDataTable(response[6]), dateConversao.draw()) : dateConversao = null;
-		(typeof dateCustoConversao != 'undefined') ? (dateCustoConversao.setDataTable(response[7]), dateCustoConversao.draw()) : dateCustoConversao = null;
-		(typeof dateTaxaConversao != 'undefined') ? (dateTaxaConversao.setDataTable(response[8]), dateTaxaConversao.draw()) : dateTaxaConversao = null;
-
-	}).done(function (){
-		alert('Concluido');
-
-	}).fail(function() {
-		alert( "Erro ao obter dados" );
 	});
 
+	$("#gerar").click(function (){
+	// alert("here");
+		Go();
+	});
 
-}
+	$(document).ready(function (){
+
+		Go();
+
+		
+
+	});
+
+	function Go(){
+
+		var url = '/relatorio/report';
+		var id = $('#contas').val();
+		var tipo = $('#tipos').val();
+		var periodos = $('#periodos').val();
+
+		$.get(url, {'id':id, 'type': tipo, 'periodos': periodos}, function (response){
+			
+			(typeof dateCliques != 'undefined') ? (dateCliques.setDataTable(response[0]), dateCliques.draw()) : dateCliques = null;
+			(typeof dateImpressoes != 'undefined') ? (dateImpressoes.setDataTable(response[1]), dateImpressoes.draw()) : dateImpressoes = null;
+			(typeof dateCpc != 'undefined') ? (dateCpc.setDataTable(response[2]), dateCpc.draw()) : dateCpc = null;
+			(typeof dateInvestimento != 'undefined') ? (dateInvestimento.setDataTable(response[3]), dateInvestimento.draw()) : dateInvestimento = null;
+			(typeof dateCtr != 'undefined') ? (dateCtr.setDataTable(response[4]), dateCtr.draw()) : dateCtr = null;
+			(typeof datePosicao != 'undefined') ? (datePosicao.setDataTable(response[5]), datePosicao.draw()) : datePosicao = null;
+			(typeof dateConversao != 'undefined') ? (dateConversao.setDataTable(response[6]), dateConversao.draw()) : dateConversao = null;
+			(typeof dateCustoConversao != 'undefined') ? (dateCustoConversao.setDataTable(response[7]), dateCustoConversao.draw()) : dateCustoConversao = null;
+			(typeof dateTaxaConversao != 'undefined') ? (dateTaxaConversao.setDataTable(response[8]), dateTaxaConversao.draw()) : dateTaxaConversao = null;
+
+		}).fail(function() {
+			alert( "Erro ao obter dados" );
+		});
+
+
+	}
+
+	($('input[name="dateClick"]').is(':checked')) ? $("#panel_dateClick").show() : $("#panel_dateClick").hide();
+
 </script>
 
-@stop
+@stop()

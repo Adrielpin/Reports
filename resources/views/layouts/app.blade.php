@@ -24,9 +24,21 @@
 
 	<style type="text/css">
 
-	body{
-		padding-top: 70px;
-	}
+		body{
+			padding-top: 70px;
+		}
+
+		[class*="col-"] .select2-container {
+			width:100% !important;
+		}
+		[class*="col-"] .select2-container .select2-search input[type="text"] {
+			padding:2px 4%!important;
+			width:90% !important;
+			margin:5px 2%;
+		}
+		[class*="col-"] .select2-container .select2-drop {
+			width: 100% !important;
+		}
 	</style>
 	
 	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>

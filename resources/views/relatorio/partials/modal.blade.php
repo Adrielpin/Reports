@@ -126,7 +126,7 @@
 <!-- Modal Metricas-->
 <div class="modal fade" id="metricasModal" tabindex="-1" role="dialog" aria-labelledby="modalMetricas">
 
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
 
     <div class="modal-content">
 
@@ -140,80 +140,69 @@
 
       <div class="modal-body">
 
-        <div class='col-md-4'>
+        <table class='table'>
+          
+          <thead class='thead-primary'>
+            
+            <tr>
+              <th width='9%'>#</th>
+              <th width='9%'>Clique</th>
+              <th width='9%'>Impressao</th>
+              <th width='9%'>Cpc</th>
+              <th width='9%'>investimento</th>
+              <th width='9%'>Ctr</th>
+              <th width='9%'>Posição</th>
+              <th width='9%'>Conversões</th>
+              <th width='9%'>Custo/Convesão</th>
+              <th width='9%'>Taxa/conversão</th>
+            </tr>
 
-          <div class="form-group">
+          </thead>
 
-            {!! Form::label('dateClick', 'Clique', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('dateClick',null, array_merge(['class' => 'form-control'])) !!}
+          <tbody>
 
-          </div>
+            <tr>
+              <td>Data</td>
+              <td align=center>{!! Form::checkbox('dateClick','dateclick', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateIpression','dateimpression', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateCpc','datecpc', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateInvestimento','datecost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateCtr','datectr', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('datePosicao','dateposition', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateConversoes','dateconversions', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateCustoConversao','dateconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('dateTaxaConversao','dateconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
+            </tr>
 
-          <div class="form-group">
+            <tr>
+              <td>Dia da semana</td>
+              <td align=center>{!! Form::checkbox('weekClick',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekIpression',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCpc',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekInvestimento',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCtr',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekPosicao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekConversoes',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCustoConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekTaxaConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+            </tr>
 
-            {!! Form::label('dateImpression', 'Impressoes', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('dateIpression',null, array_merge(['class' => 'form-control'])) !!}
+            <tr>
+              <td align=center>Hora</td>
+              <td align=center>{!! Form::checkbox('hourClick',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourIpression',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCpc',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourInvestimento',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCtr',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourPosicao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourConversoes',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCustoConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourTaxaConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+            </tr>
 
-          </div>
+          </tbody>
 
-          <div class="form-group">
-
-            {!! Form::label('dateCtr', 'Ctr', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('dateCtr',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-        </div>
-
-        <div class='col-md-4'>
-
-          <div class="form-group">
-
-            {!! Form::label('weekClick', 'Clique', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('weekClick',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-          <div class="form-group">
-
-            {!! Form::label('weekImpression', 'Impressoes', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('weekIpression',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-          <div class="form-group">
-
-            {!! Form::label('weekCtr', 'Ctr', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('weekCtr',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-        </div>
-
-        <div class='col-md-4'>
-
-          <div class="form-group">
-
-            {!! Form::label('hourClick', 'Clique', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('hourClick',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-          <div class="form-group">
-
-            {!! Form::label('hourImpression', 'Impressoes', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('hourIpression',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-          <div class="form-group">
-
-            {!! Form::label('hourCtr', 'Ctr', ['class' => 'control-label']) !!}
-            {!! Form::checkbox('hourCtr',null, array_merge(['class' => 'form-control'])) !!}
-
-          </div>
-
-        </div>
+        </table>
 
       </div>
 
@@ -261,3 +250,66 @@
   </div>
 
 </div>
+
+
+<script type="text/javascript">
+
+     $('input[type="checkbox"]').click(function(){
+
+        if($(this).attr("value")=="dateclick"){
+            $("#panel_dateClick").toggle();
+            dateCliques.draw();
+        }
+
+        if($(this).attr("value")=="dateimpression"){
+            $("#panel_dateImpression").toggle();
+            dateImpressoes.draw();
+        }
+
+        if($(this).attr("value")=="datecpc"){
+            $("#panel_dateCpc").toggle();
+            dateCpc.draw();
+        }
+
+        if($(this).attr("value")=="datecost"){
+            $("#panel_dateCost").toggle();
+            dateInvestimento.draw();
+        }
+
+        if($(this).attr("value")=="datectr"){
+            $("#panel_dateCtr").toggle();
+            dateCtr.draw();
+        }
+
+        if($(this).attr("value")=="dateposition"){
+            $("#panel_datePosition").toggle();
+            datePosicao.draw();
+        }
+
+        if($(this).attr("value")=="dateconversions"){
+            $("#panel_dateConversions").toggle();
+            dateConversao.draw();
+        }
+
+        if($(this).attr("value")=="dateconversioncost"){
+            $("#panel_dateConversionCost").toggle();
+            dateCustoConversao.draw();
+        }
+
+        if($(this).attr("value")=="dateconversionhate"){
+            $("#panel_dateConversionHate").toggle();
+            dateTaxaConversao.draw();
+        }
+
+    });
+
+</script>
+
+
+
+
+
+
+
+
+

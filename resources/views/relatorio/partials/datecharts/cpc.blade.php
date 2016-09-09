@@ -7,7 +7,7 @@ dateCpc = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateCpc'>
 
 	<div class='row'>
 

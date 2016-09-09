@@ -7,7 +7,7 @@ dateCtr = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateCtr'>
 
 	<div class='row '>
 

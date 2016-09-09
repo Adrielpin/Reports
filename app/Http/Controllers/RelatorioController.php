@@ -41,7 +41,6 @@ class RelatorioController extends Controller {
 
 	public function report(Request $request){
 
-
 		$values = new requestData();
 		$values = $values->request($request);
 
@@ -55,9 +54,10 @@ class RelatorioController extends Controller {
 		$conversao = $adsArrays->conversao($values);
 		$custoConversao = $adsArrays->custoConversao($values);
 		$taxaConversao = $adsArrays->taxaConversao($values);
+		$searchImpressionShare = $adsArrays->searchImpressionShare($values);
 
 
-		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao);
+		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare);
 
 		return $Arrays;
 

@@ -7,7 +7,7 @@ dateCustoConversao = new google.visualization.ChartWrapper({
 });
 </script>
 
-<div class='row'>
+<div class='row' id='panel_dateConversionCost'>
 
 	<div class='row'>
 
@@ -41,3 +41,4 @@ dateCustoConversao = new google.visualization.ChartWrapper({
 	</div>
 
 </div>
+

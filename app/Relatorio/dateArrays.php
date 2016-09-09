@@ -2,14 +2,14 @@
 
 /**
  * Classe transforma xml em objetos JSON utilizadas na construção de grafico
- *	Em proxima refactory trasformar a classe para utilização de LAVACHART ja icrementada no composer.json
+ *	Em proxima refactory trasformar a classe para utilização de LAVACHART ja incrementada no composer.json
  * 
  * @author Adriel Pinheiro <adriel.pinheiro@clinks.com.br> 
  */
 
 namespace Relatorio;
 
-class dateArrays extends requestData{
+class dateArrays {
 
 
 	public static function cliques($returned) {
@@ -22,7 +22,7 @@ class dateArrays extends requestData{
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"]));
+				array_push($tmp, array(strtotime($row["day"])*1000 , (int)$row["clicks"]));
 			}
 		}
 
@@ -41,7 +41,6 @@ class dateArrays extends requestData{
 		return json_encode($tmpArray, JSON_PRETTY_PRINT);
 
 	}
-
 
 	public static function impressoes($returned) {
 		
@@ -73,7 +72,6 @@ class dateArrays extends requestData{
 
 	}
 
-	
 	public static function cpc($returned) {
 		
 		$xml = simplexml_load_string($returned);
@@ -84,7 +82,7 @@ class dateArrays extends requestData{
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]*1000000, (int)$row["clicks"]));
+				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000, (int)$row["clicks"]));
 			}
 		}
 
@@ -96,7 +94,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Cpc','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -114,7 +112,7 @@ class dateArrays extends requestData{
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]*1000000));
+				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000));
 			}
 		}
 
@@ -156,7 +154,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -186,7 +184,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2]),1), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2]),1), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Posição','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -235,7 +233,7 @@ class dateArrays extends requestData{
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]*1000000, (int)$row["conversions"]));
+				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000, (int)$row["conversions"]));
 			}
 		}
 
@@ -247,7 +245,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2]),2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2]),2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Custo por conversao','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -277,7 +275,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Taxa de conversao','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -307,7 +305,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -337,7 +335,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -367,7 +365,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -397,7 +395,7 @@ class dateArrays extends requestData{
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -405,34 +403,45 @@ class dateArrays extends requestData{
 
 	}
 
-	public static function searchImpressionShare($returned) {
-		
+	public static function searchImpressionShare($returned){
+
 		$xml = simplexml_load_string($returned);
 		$xml = $xml->table;
 		
 		$tmpArray = array();
 		$tmp = array();
+		$tmp_2 = array();
+		$val = 0;
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				((float)$row["searchImprShare"] < 11 || (float)$row["searchImprShare"] > 89) ? $val = ((float)$row["searchImprShare"]-((float)$row["searchLostISBudget"]+(float)$row["searchLostISRank"])) : $val = (float)$row["searchImprShare"];
+				array_push($tmp, array(date($row["day"]), ($val == 0) ? 0 : ((int)$row["impressions"]/$val)*100));
+				array_push($tmp_2, array(date($row["day"]), (int)$row["impressions"]));
 			}
 		}
 
 		$tmp = array_reduce($tmp,function ($a, $b){
-			isset($a[$b[0]]) ? $a[$b[0]][1] += $b[1] and $a[$b[0]][2] += $b[2] : $a[$b[0]] = $b;
+			isset($a[$b[0]]) ? $a[$b[0]][1] += $b[1] : $a[$b[0]] = $b;
+			return $a;
+		});
+
+		$tmp_2 = array_reduce($tmp_2,function ($a, $b){
+			isset($a[$b[0]]) ? $a[$b[0]][1] += $b[1] : $a[$b[0]] = $b;
 			return $a;
 		});
 
 		asort($tmp);
 
-		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+		foreach ($tmp as $value_1) {
+			foreach ($tmp_2 as $value_2) {
+				($value_1[0] == $value_2[0]) ? array_push($tmpArray, array('c'=>array(array('v'=>"Date($value_1[0])", 'f'=>null), array('v'=>($value_1[1] == 0) ? 0 : round(($value_2[1]/$value_1[1])*100, 2), 'f'=>null)))) : null;
+			}
 		}
 
-		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
+		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Parcela de Impressão','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
 		return json_encode($tmpArray, JSON_PRETTY_PRINT);
-
+		
 	}
 
 }
