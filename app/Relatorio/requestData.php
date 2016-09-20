@@ -16,7 +16,7 @@ class requestData {
 
 	public function request ($request) {
 
-		$fields = array('Date', 'HourOfDay', 'Clicks', 'Impressions', 'Cost', 'AveragePosition', 'Conversions', 'ViewThroughConversions', 'SearchImpressionShare', 'SearchBudgetLostImpressionShare', 'SearchRankLostImpressionShare', 'ContentImpressionShare', 'ContentBudgetLostImpressionShare', 'ContentRankLostImpressionShare');
+		$fields = array('Date','Month','DayOfWeek','HourOfDay', 'Clicks', 'Impressions', 'Cost', 'AveragePosition', 'Conversions', 'ViewThroughConversions', 'SearchImpressionShare', 'SearchBudgetLostImpressionShare', 'SearchRankLostImpressionShare', 'ContentImpressionShare', 'ContentBudgetLostImpressionShare', 'ContentRankLostImpressionShare');
 
 		$user = new AdWordsUser();
 		$user->SetClientCustomerId($request->id);

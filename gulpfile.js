@@ -33,5 +33,4 @@ var elixir = require('laravel-elixir');
     mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/assets/fonts');
     mix.copy('node_modules/font-awesome/fonts/','public/assets/fonts'); 
 
-
  });

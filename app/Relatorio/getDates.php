@@ -180,6 +180,106 @@ class getDates {
 		return $dates;
 
 	}
+
+	function getParameter($request){
+
+		$range = $request->periodos;
+		$data_ini = $request->data_ini;
+		$data_fin = $request->data_fin;
+
+		//personalizado
+		if ($range == 'PERSONALIZADO'){
+			$diferenca =  strtotime($data_fin) - strtotime($data_ini);
+			$dias = (int)floor( $diferenca / (60 * 60 * 24));
+
+			if($dias <= 31){
+				$sintax = 'Date';
+			}
+
+			if($dias > 31 && $dias < 366){
+				$sintax = 'Month';
+			}
+
+			if($dias > 366){
+				$sintax = 'Year';
+			}
+		}
+
+		//Hoje
+		if ($range == 'TODAY'){
+			$sintax = 'Date';
+		}
+
+		//Ontem
+		if ($range == 'YESTERDAY'){
+			$sintax = 'Date';
+		}
+
+		//Esta semana (Dom- hoje)
+		if ($range == 'THIS_WEEK_SUN_TODAY'){
+			$sintax = 'Date';
+		}
+
+		//Esta semana (Seg- hoje)
+		if ($range == 'THIS_WEEK_MON_TODAY'){
+			$sintax = 'Date';
+		}
+
+		//ultimos 7 dias	
+		if ($range == 'LAST_7_DAYS'){
+			$sintax = 'Date';
+		}
+
+		//Semana passada (seg - dom)	
+		if($range == 'LAST_WEEK'){
+			$sintax = 'Date';
+
+		}
+
+		//Semana passada (Dom - Sab)
+		if ($range == 'LAST_WEEK_SUN_SAT'){
+			$sintax = 'Date';
+		}
+
+		//Ultima semana útil (seg - sex)	
+		if($range == 'LAST_BUSINESS_WEEK'){
+			$sintax = 'Date';
+		}
+
+		//Ultimos 14 dias
+		if ($range == 'LAST_14_DAYS'){
+			$sintax = 'Date';
+		}
+
+		//Este mês
+		if ($range == 'THIS_MONTH'){
+			$sintax = 'Date';
+		}
+
+		//Ultimos 30 dias
+		if ($range == 'LAST_30_DAYS'){
+			$sintax = 'Date';
+		}
+
+		//Mês Anterior
+		if ($range == 'LAST_MONTH'){
+			$sintax = 'Date';
+		}
+
+		//Ano atual
+		if ($range == 'THIS_YEAR'){
+			$sintax = 'Month';
+		}
+
+		//Ano anterior
+		if ($range == 'LAST_YEAR'){
+			$sintax = 'Month';
+		}
+
+
+		return $sintax;
+
+	}
 }
 
 ?>

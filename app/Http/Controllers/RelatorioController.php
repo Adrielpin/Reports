@@ -24,6 +24,8 @@ use ReportDefinition;
 use Relatorio\requestData;
 use Relatorio\contas;
 use Relatorio\dateArrays;
+use Relatorio\weekArrays;
+use Relatorio\hourArrays;
 use Relatorio\oldMethods;
 
 class RelatorioController extends Controller {
@@ -35,8 +37,9 @@ class RelatorioController extends Controller {
 
 		$accounts = new contas();
 		$accounts = $accounts->GetAccounts($user);
-		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts]);
 
+		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts]);
+		
     }
 
 	public function report(Request $request){
@@ -56,8 +59,32 @@ class RelatorioController extends Controller {
 		$taxaConversao = $adsArrays->taxaConversao($values);
 		$searchImpressionShare = $adsArrays->searchImpressionShare($values);
 
+		$adsArrays = new weekArrays();
+		$wcliques = $adsArrays->cliques($values);
+		$wimpressoes = $adsArrays->impressoes($values);
+		$wcpc = $adsArrays->cpc($values);
+		$winvestimento = $adsArrays->investimento($values);
+		$wctr = $adsArrays->ctr($values);
+		$wposicao = $adsArrays->position($values);
+		$wconversao = $adsArrays->conversao($values);
+		$wcustoConversao = $adsArrays->custoConversao($values);
+		$wtaxaConversao = $adsArrays->taxaConversao($values);
+		$wsearchImpressionShare = $adsArrays->searchImpressionShare($values);
 
-		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare);
+		$adsArrays = new hourArrays();
+		$hcliques = $adsArrays->cliques($values);
+		$himpressoes = $adsArrays->impressoes($values);
+		$hcpc = $adsArrays->cpc($values);
+		$hinvestimento = $adsArrays->investimento($values);
+		$hctr = $adsArrays->ctr($values);
+		$hposicao = $adsArrays->position($values);
+		$hconversao = $adsArrays->conversao($values);
+		$hcustoConversao = $adsArrays->custoConversao($values);
+		$htaxaConversao = $adsArrays->taxaConversao($values);
+		$hsearchImpressionShare = $adsArrays->searchImpressionShare($values);
+
+
+		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare, $wcliques, $wimpressoes, $wcpc, $winvestimento, $wctr, $wposicao, $wconversao, $wcustoConversao, $wtaxaConversao, $wsearchImpressionShare, $hcliques, $himpressoes, $hcpc, $hinvestimento, $hctr, $hposicao, $hconversao, $hcustoConversao, $htaxaConversao, $hsearchImpressionShare);
 
 		return $Arrays;
 

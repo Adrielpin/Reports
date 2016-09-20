@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+
 <html lang='pt-BR'>
+
 <head>
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,14 +37,12 @@
 		}
 
 	</style>
-	
+
 	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
 
 </head>
 
 <body>
-
-
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
@@ -137,7 +138,7 @@
 		
 	</div>
 
-</div>
 
 </body>
+
 </html>

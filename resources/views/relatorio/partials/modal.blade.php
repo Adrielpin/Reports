@@ -141,9 +141,9 @@
       <div class="modal-body">
 
         <table class='table'>
-          
+
           <thead class='thead-primary'>
-            
+
             <tr>
               <th width='9%'>#</th>
               <th width='9%'>Clique</th>
@@ -176,28 +176,28 @@
 
             <tr>
               <td>Dia da semana</td>
-              <td align=center>{!! Form::checkbox('weekClick',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekIpression',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCpc',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekInvestimento',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCtr',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekPosicao',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekConversoes',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCustoConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekTaxaConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekClick','weekclick', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekIpression','weekimpression', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCpc','weekcpc', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekInvestimento','weekcost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCtr','weekctr', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekPosicao','weekposition', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekConversoes','weekconversions', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekCustoConversao','weekconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('weekTaxaConversao','weekconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
             </tr>
 
             <tr>
               <td align=center>Hora</td>
-              <td align=center>{!! Form::checkbox('hourClick',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourIpression',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCpc',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourInvestimento',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCtr',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourPosicao',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourConversoes',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCustoConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourTaxaConversao',1, array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourClick','hourclick', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourIpression','hourimpression', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCpc','hourcpc', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourInvestimento','hourcost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCtr','hourctr', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourPosicao','hourposition', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourConversoes','hourconversions', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourCustoConversao','hourconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+              <td align=center>{!! Form::checkbox('hourTaxaConversao','hourconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
             </tr>
 
           </tbody>
@@ -254,56 +254,149 @@
 
 <script type="text/javascript">
 
-     $('input[type="checkbox"]').click(function(){
+ $('input[type="checkbox"]').click(function(){
 
-        if($(this).attr("value")=="dateclick"){
-            $("#panel_dateClick").toggle();
-            dateCliques.draw();
+  if($(this).attr("value")=="dateclick"){
+    $("#panel_dateClick").toggle();
+    dateCliques.draw();
+  }
+
+  if($(this).attr("value")=="dateimpression"){
+    $("#panel_dateImpression").toggle();
+    dateImpressoes.draw();
+  }
+
+  if($(this).attr("value")=="datecpc"){
+    $("#panel_dateCpc").toggle();
+    dateCpc.draw();
+  }
+
+  if($(this).attr("value")=="datecost"){
+    $("#panel_dateCost").toggle();
+    dateInvestimento.draw();
+  }
+
+  if($(this).attr("value")=="datectr"){
+    $("#panel_dateCtr").toggle();
+    dateCtr.draw();
+  }
+
+  if($(this).attr("value")=="dateposition"){
+    $("#panel_datePosition").toggle();
+    datePosicao.draw();
+  }
+
+  if($(this).attr("value")=="dateconversions"){
+    $("#panel_dateConversions").toggle();
+    dateConversao.draw();
+  }
+
+  if($(this).attr("value")=="dateconversioncost"){
+    $("#panel_dateConversionCost").toggle();
+    dateCustoConversao.draw();
+  }
+
+  if($(this).attr("value")=="dateconversionhate"){
+    $("#panel_dateConversionHate").toggle();
+    dateTaxaConversao.draw();
+  }
+
+        //week
+
+        if($(this).attr("value")=="weekclick"){
+          $("#panel_weekClick").toggle();
+          weekCliques.draw();
         }
 
-        if($(this).attr("value")=="dateimpression"){
-            $("#panel_dateImpression").toggle();
-            dateImpressoes.draw();
+        if($(this).attr("value")=="weekimpression"){
+          $("#panel_weekImpression").toggle();
+          weekImpressoes.draw();
         }
 
-        if($(this).attr("value")=="datecpc"){
-            $("#panel_dateCpc").toggle();
-            dateCpc.draw();
+        if($(this).attr("value")=="weekcpc"){
+          $("#panel_weekCpc").toggle();
+          weekCpc.draw();
         }
 
-        if($(this).attr("value")=="datecost"){
-            $("#panel_dateCost").toggle();
-            dateInvestimento.draw();
+        if($(this).attr("value")=="weekcost"){
+          $("#panel_weekCost").toggle();
+          weekInvestimento.draw();
         }
 
-        if($(this).attr("value")=="datectr"){
-            $("#panel_dateCtr").toggle();
-            dateCtr.draw();
+        if($(this).attr("value")=="weekctr"){
+          $("#panel_weekCtr").toggle();
+          weekCtr.draw();
         }
 
-        if($(this).attr("value")=="dateposition"){
-            $("#panel_datePosition").toggle();
-            datePosicao.draw();
+        if($(this).attr("value")=="weekposition"){
+          $("#panel_weekPosition").toggle();
+          weekPosicao.draw();
         }
 
-        if($(this).attr("value")=="dateconversions"){
-            $("#panel_dateConversions").toggle();
-            dateConversao.draw();
+        if($(this).attr("value")=="weekconversions"){
+          $("#panel_weekConversions").toggle();
+          weekConversao.draw();
         }
 
-        if($(this).attr("value")=="dateconversioncost"){
-            $("#panel_dateConversionCost").toggle();
-            dateCustoConversao.draw();
+        if($(this).attr("value")=="weekconversioncost"){
+          $("#panel_weekConversionCost").toggle();
+          weekCustoConversao.draw();
         }
 
-        if($(this).attr("value")=="dateconversionhate"){
-            $("#panel_dateConversionHate").toggle();
-            dateTaxaConversao.draw();
+        if($(this).attr("value")=="weekconversionhate"){
+          $("#panel_weekConversionHate").toggle();
+          dateTaxaConversao.draw();
         }
 
-    });
+        //hour
+        if($(this).attr("value")=="hourclick"){
+          $("#panel_hourClick").toggle();
+          hourCliques.draw();
+        }
 
-</script>
+        if($(this).attr("value")=="hourimpression"){
+          $("#panel_hourImpression").toggle();
+          hourImpressoes.draw();
+        }
+
+        if($(this).attr("value")=="hourcpc"){
+          $("#panel_hourCpc").toggle();
+          hourCpc.draw();
+        }
+
+        if($(this).attr("value")=="hourcost"){
+          $("#panel_hourCost").toggle();
+          hourInvestimento.draw();
+        }
+
+        if($(this).attr("value")=="hourctr"){
+          $("#panel_hourCtr").toggle();
+          hourCtr.draw();
+        }
+
+        if($(this).attr("value")=="hourposition"){
+          $("#panel_hourPosition").toggle();
+          hourPosicao.draw();
+        }
+
+        if($(this).attr("value")=="hourconversions"){
+          $("#panel_hourConversions").toggle();
+          hourConversao.draw();
+        }
+
+        if($(this).attr("value")=="hourconversioncost"){
+          $("#panel_hourConversionCost").toggle();
+          hourCustoConversao.draw();
+        }
+
+        if($(this).attr("value")=="hourconversionhate"){
+          $("#panel_hourConversionHate").toggle();
+          hourTaxaConversao.draw();
+        }
+
+      });
+
+    </script>
 
 
 
