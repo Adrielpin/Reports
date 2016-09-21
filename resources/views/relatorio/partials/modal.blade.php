@@ -140,69 +140,73 @@
 
       <div class="modal-body">
 
-        <table class='table'>
+        <div class='table-responsive'>
 
-          <thead class='thead-primary'>
+          <table class='table'>
 
-            <tr>
-              <th width='9%'>#</th>
-              <th width='9%'>Clique</th>
-              <th width='9%'>Impressao</th>
-              <th width='9%'>Cpc</th>
-              <th width='9%'>investimento</th>
-              <th width='9%'>Ctr</th>
-              <th width='9%'>Posição</th>
-              <th width='9%'>Conversões</th>
-              <th width='9%'>Custo/Convesão</th>
-              <th width='9%'>Taxa/conversão</th>
-            </tr>
+            <thead>
 
-          </thead>
+              <tr>
+                <th width='9%'>#</th>
+                <th width='9%'>Clique</th>
+                <th width='9%'>Impressao</th>
+                <th width='9%'>Cpc</th>
+                <th width='9%'>investimento</th>
+                <th width='9%'>Ctr</th>
+                <th width='9%'>Posição</th>
+                <th width='9%'>Conversões</th>
+                <th width='9%'>Custo/Convesão</th>
+                <th width='9%'>Taxa/conversão</th>
+              </tr>
 
-          <tbody>
+            </thead>
 
-            <tr>
-              <td>Data</td>
-              <td align=center>{!! Form::checkbox('dateClick','dateclick', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateIpression','dateimpression', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateCpc','datecpc', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateInvestimento','datecost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateCtr','datectr', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('datePosicao','dateposition', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateConversoes','dateconversions', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateCustoConversao','dateconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('dateTaxaConversao','dateconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
-            </tr>
+            <tbody>
 
-            <tr>
-              <td>Dia da semana</td>
-              <td align=center>{!! Form::checkbox('weekClick','weekclick', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekIpression','weekimpression', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCpc','weekcpc', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekInvestimento','weekcost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCtr','weekctr', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekPosicao','weekposition', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekConversoes','weekconversions', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekCustoConversao','weekconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('weekTaxaConversao','weekconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
-            </tr>
+              <tr>
+              <td>Período</td>
+                <td align=center>{!! Form::checkbox('dateClick','dateclick', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateIpression','dateimpression', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateCpc','datecpc', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateInvestimento','datecost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateCtr','datectr', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('datePosicao','dateposition', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateConversoes','dateconversions', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateCustoConversao','dateconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('dateTaxaConversao','dateconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
+              </tr>
 
-            <tr>
-              <td align=center>Hora</td>
-              <td align=center>{!! Form::checkbox('hourClick','hourclick', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourIpression','hourimpression', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCpc','hourcpc', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourInvestimento','hourcost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCtr','hourctr', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourPosicao','hourposition', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourConversoes','hourconversions', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourCustoConversao','hourconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
-              <td align=center>{!! Form::checkbox('hourTaxaConversao','hourconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
-            </tr>
+              <tr>
+                <td>Dia da semana</td>
+                <td align=center>{!! Form::checkbox('weekClick','weekclick', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekIpression','weekimpression', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekCpc','weekcpc', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekInvestimento','weekcost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekCtr','weekctr', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekPosicao','weekposition', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekConversoes','weekconversions', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekCustoConversao','weekconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('weekTaxaConversao','weekconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
+              </tr>
 
-          </tbody>
+              <tr>
+                <td align=center>Hora</td>
+                <td align=center>{!! Form::checkbox('hourClick','hourclick', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourIpression','hourimpression', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourCpc','hourcpc', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourInvestimento','hourcost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourCtr','hourctr', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourPosicao','hourposition', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourConversoes','hourconversions', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourCustoConversao','hourconversioncost', array_merge(['class' => 'form-control'])) !!}</td>
+                <td align=center>{!! Form::checkbox('hourTaxaConversao','hourconversionhate', array_merge(['class' => 'form-control'])) !!}</td>
+              </tr>
 
-        </table>
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
@@ -235,7 +239,7 @@
 
       <div class="modal-body">
         {!! Form::label('link', 'Link', ['class' => 'control-label']) !!}
-        {!! Form::text('link',null, array_merge(['class' => 'form-control'])) !!}
+        {!! Form::text('link',null, ['class' => 'form-control']) !!}
       </div>
 
       <div class="modal-footer">

@@ -8,35 +8,40 @@ Relatório
 
 @section('body')
 
-<div class='col-xs-12 col-sm-3 col-md-3 col-lg-2'>
+<div class='col-xs-12 col-sm-12 col-md-3 col-lg-2 affix'>
+
+    <div class="affix">
+
 
 	{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
 
 	@include('relatorio.partials.form')
 
-	@include('relatorio.partials.modal')
-
 	{{ Form::close() }}
+
+	</div>
 
 </div>
 
-
-
-<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10" id='report' style='float: right;'>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10" id='report' style='float:right;>
 
 	<div class='container-fluid'>
 
-		<div class="progress" hidden="true">
-			<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:1%">
-				1%
+		<div class='row'>
+
+			<div class="progress" hidden="true">
+
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:1%">1%</div>
+
 			</div>
+
 		</div>
 
-		<div class='class-*-12'>
+		<div class='row' id='desempenho'>
 
-			{{-- Graficos de anuncios por data --}}
-			{{-- condições data inteira, mês e ano --}}
+			<h3>Desempenho</h3>
 
+			{{-- date includes --}}
 			@include('relatorio.partials.datecharts.cliques')
 
 			@include('relatorio.partials.datecharts.impressoes')
@@ -55,6 +60,9 @@ Relatório
 
 			@include('relatorio.partials.datecharts.taxa_conversao')
 
+			{{-- @include('relatorio.partials.datecharts.searchImpressionShared') --}}
+
+			{{-- week includes --}}
 			@include('relatorio.partials.weekcharts.cliques')
 
 			@include('relatorio.partials.weekcharts.impressoes')
@@ -73,6 +81,7 @@ Relatório
 
 			@include('relatorio.partials.weekcharts.taxa_conversao')
 
+			{{-- hour includes --}}
 			@include('relatorio.partials.hourcharts.cliques')
 
 			@include('relatorio.partials.hourcharts.impressoes')
@@ -93,9 +102,17 @@ Relatório
 
 		</div>
 
+		<div class='row' id='projecao'>
+
+			<h3>Projeção de resultados</h3>
+
+		</div>
+
 	</div>
 
 </div>
+
+@include('relatorio.partials.modal')
 
 <!--Load the AJAX API-->
 
@@ -196,8 +213,6 @@ Relatório
 
 		Go();
 
-		
-
 	});
 
 	function Go(){
@@ -215,7 +230,7 @@ Relatório
 				width = width+Math.floor((Math.random() * 3) + 1);
 			}
 			$('.progress-bar').width(width + '%');
-			$('.progress-bar').html(width + '%');
+			$('.progress-bar').html('Coletando dados ' + width + '%');
 		}
 
 		var url = '/relatorio/report';
@@ -234,6 +249,7 @@ Relatório
 			(typeof dateConversao != 'undefined') ? (dateConversao.setDataTable(response[6]), dateConversao.draw()) : dateConversao = null;
 			(typeof dateCustoConversao != 'undefined') ? (dateCustoConversao.setDataTable(response[7]), dateCustoConversao.draw()) : dateCustoConversao = null;
 			(typeof dateTaxaConversao != 'undefined') ? (dateTaxaConversao.setDataTable(response[8]), dateTaxaConversao.draw()) : dateTaxaConversao = null;
+			// (typeof dateSearchImpression != 'undefined') ? (dateSearchImpression.setDataTable(response[9]), dateSearchImpression.draw()) : dateSearchImpression = null;
 
 			(typeof weekCliques != 'undefined') ? (weekCliques.setDataTable(response[10]), weekCliques.draw()) : weekCliques = null;
 			(typeof weekImpressoes != 'undefined') ? (weekImpressoes.setDataTable(response[11]), weekImpressoes.draw()) : weekImpressoes = null;
@@ -254,6 +270,9 @@ Relatório
 			(typeof hourConversao != 'undefined') ? (hourConversao.setDataTable(response[26]), hourConversao.draw()) : hourConversao = null;
 			(typeof hourCustoConversao != 'undefined') ? (hourCustoConversao.setDataTable(response[27]), hourCustoConversao.draw()) : hourCustoConversao = null;
 			(typeof hourTaxaConversao != 'undefined') ? (hourTaxaConversao.setDataTable(response[28]), hourTaxaConversao.draw()) : hourTaxaConversao = null;
+
+			$('#page-printer').attr('href','/relatorio/view?'+response[30]);
+			$('#link').val('{{ url("/relatorio/view") }}?'+response[30]);
 			
 		});
 
@@ -275,6 +294,45 @@ Relatório
 		});
 
 	}
+
+	$('#button-desempenho').click(function (){
+
+		$('#projecao').hide();
+		$('#desempenho').show();
+
+		dateCliques.draw();
+		dateImpressoes.draw();
+		dateCpc.draw();
+		dateInvestimento.draw();
+		dateCtr.draw();
+		datePosicao.draw();
+		dateConversao.draw();
+		dateCustoConversao.draw();
+		dateTaxaConversao.draw();
+		weekCliques.draw();
+		weekImpressoes.draw();
+		weekCpc.draw();
+		weekInvestimento.draw();
+		weekCtr.draw();
+		weekPosicao.draw();
+		weekConversao.draw();
+		weekCustoConversao.draw();
+		weekTaxaConversao.draw();
+		hourCliques.draw();
+		hourImpressoes.draw();
+		hourCpc.draw();
+		hourInvestimento.draw();
+		hourCtr.draw();
+		hourPosicao.draw();
+		hourConversao.draw();
+		hourCustoConversao.draw();
+		hourTaxaConversao.draw();
+	});
+
+	$('#button-proj').click(function (){
+		$('#projecao').show();
+		$('#desempenho').hide();
+	});
 
 	($('input[name="dateClick"]').is(':checked')) ? $("#panel_dateClick").show() : $("#panel_dateClick").hide();
 

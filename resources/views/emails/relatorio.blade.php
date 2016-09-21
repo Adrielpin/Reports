@@ -1,12 +1,12 @@
 <html>
 <head>
 
-  <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ url('css/pageprint.css') }}" rel="stylesheet">
-  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+ <script src="{{ asset('assets/js/all.js') }}"></script>
+ <link href="{{ asset('assets/css/all.css') }}" rel="stylesheet">
+ <link href="{{ url('css/pageprint.css') }}" rel="stylesheet">
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript">
 
   google.charts.load('current', {packages: ['corechart', 'bar']});
   google.charts.setOnLoadCallback(drawChart);
@@ -21,9 +21,9 @@
     configPrint();
   }
 
-  </script>
+</script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
   function configPrint() {
     var tipo = '<?php print $tipo?>';
@@ -71,18 +71,18 @@
       $('[name=chart_roi]').hide();
 
     }
-      $('#bi-content').hide();
+    $('#bi-content').hide();
 
   }
   
 
-  </script>
+</script>
 
-  <script type="text/javascript" src="{{ url('js/DataOptions.js') }}"></script>
-  <script type="text/javascript" src="{{ url('js/WeekOptions.js') }}"></script>
-  <script type="text/javascript" src="{{ url('js/HourOptions.js') }}"></script>
-  <script type="text/javascript" src="{{ url('js/GeoOptions.js') }}"></script>
-  
+<script type="text/javascript" src="{{ url('js/DataOptions.js') }}"></script>
+<script type="text/javascript" src="{{ url('js/WeekOptions.js') }}"></script>
+<script type="text/javascript" src="{{ url('js/HourOptions.js') }}"></script>
+<script type="text/javascript" src="{{ url('js/GeoOptions.js') }}"></script>
+
 </head>
 
 <body>

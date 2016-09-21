@@ -36,6 +36,21 @@
 			width: 100% !important;
 		}
 
+		@media (min-width: 1024px) {
+			.affix {
+				position: fixed;
+			}
+			#report{
+				width: 65%
+			}
+		}
+
+		@media (max-width: 1023px) {
+			.affix {
+				position: static;
+			}
+		}
+
 	</style>
 
 	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>

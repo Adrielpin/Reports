@@ -3,7 +3,7 @@
 
 	{!! Form::label('contas', 'Conta') !!}
 
-	{{ Form::select('contas', $campaigns, $prefer, array('class'=>'select-2')) }}
+	{{ Form::select('contas', $campaigns, $prefer, array('class'=>'select-2 form-control')) }}
 
 	<script type="text/javascript">
 
@@ -53,16 +53,20 @@
 <div class="form-group">
 
 	<button type="button" id='gerar' class='btn btn-success' style='width:100%'>Gerar</button>
+
 </div>
 
 <div class="form-group btn-group-vertical" style=' width:100%;'>
+
 	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#metricasModal">metricas</button>
-	<button type="button" class="btn btn-info">Projeção</button>
-	<button type="button" class="btn btn-info">Desempenho</button>
+	<button type="button" class="btn btn-info" id='button-proj'>Projeção</button>
+	<button type="button" class="btn btn-info" id='button-desempenho'>Desempenho</button>
+
 </div>
 
-<div class="form-group">
+<div class="form-group btn-group-vertical" style='width:100%'>
 
-	<button type="button" class="btn btn-warning btn-md" style='width:100%' data-toggle="modal" data-target="#linkModal"><span class="glyphicon glyphicon-print"></span> Imprimir </button>
+	<a id='page-printer' class="btn btn-warning btn-md" href=""><span class="glyphicon glyphicon-print"></span> versão de impressão </a>
+	<button id='shared-link' type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#linkModal"><span class="glyphicon glyphicon-share-alt"></span> link </button>
 
 </div>

@@ -407,7 +407,7 @@ class dateArrays {
 
 		$xml = simplexml_load_string($returned);
 		$xml = $xml->table;
-		
+
 		$tmpArray = array();
 		$tmp = array();
 		$tmp_2 = array();
@@ -415,9 +415,9 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				((float)$row["searchImprShare"] < 11 || (float)$row["searchImprShare"] > 89) ? $val = ((float)$row["searchImprShare"]-((float)$row["searchLostISBudget"]+(float)$row["searchLostISRank"])) : $val = (float)$row["searchImprShare"];
-				array_push($tmp, array(date($row["day"]), ($val == 0) ? 0 : ((int)$row["impressions"]/$val)*100));
-				array_push($tmp_2, array(date($row["day"]), (int)$row["impressions"]));
+				((float)$row["searchImprShare"] < 11 || (float)$row["searchImprShare"] > 89) ? $val = (100-((float)$row["searchLostISBudget"]+(float)$row["searchLostISRank"])) : $val = (float)$row["searchImprShare"];
+				array_push($tmp, array(strtotime($row["day"])*1000, ($val == 0) ? 0 : ((int)$row["impressions"]/$val)*100));
+				array_push($tmp_2, array(strtotime($row["day"])*1000, (int)$row["impressions"]));
 			}
 		}
 
@@ -441,6 +441,26 @@ class dateArrays {
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Parcela de Impressão','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
 		return json_encode($tmpArray, JSON_PRETTY_PRINT);
+
+	}
+
+	public static function searchImpressionxCost($returnded){
+
+	}
+
+	public static function searchImpressionxCliks($returnded){
+		
+	}
+
+	public static function searchImpressionxImpressions($returnded){
+		
+	}
+
+	public static function searchImpressionxConversions($returnded){
+		
+	}
+
+	public static function searchImpressionxTotalConversions($returnded){
 		
 	}
 

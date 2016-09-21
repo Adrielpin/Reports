@@ -26,7 +26,7 @@ use Relatorio\contas;
 use Relatorio\dateArrays;
 use Relatorio\weekArrays;
 use Relatorio\hourArrays;
-use Relatorio\oldMethods;
+use Relatorio\oldmethods;
 
 class RelatorioController extends Controller {
 
@@ -40,12 +40,13 @@ class RelatorioController extends Controller {
 
 		return view('relatorio.index')->with(['prefer'=>'6284915288','campaigns' => $accounts]);
 		
-    }
+	}
 
 	public function report(Request $request){
 
 		$values = new requestData();
 		$values = $values->request($request);
+
 
 		$adsArrays = new dateArrays();
 		$cliques = $adsArrays->cliques($values);
@@ -58,6 +59,7 @@ class RelatorioController extends Controller {
 		$custoConversao = $adsArrays->custoConversao($values);
 		$taxaConversao = $adsArrays->taxaConversao($values);
 		$searchImpressionShare = $adsArrays->searchImpressionShare($values);
+
 
 		$adsArrays = new weekArrays();
 		$wcliques = $adsArrays->cliques($values);
@@ -83,8 +85,15 @@ class RelatorioController extends Controller {
 		$htaxaConversao = $adsArrays->taxaConversao($values);
 		$hsearchImpressionShare = $adsArrays->searchImpressionShare($values);
 
+		$token = Crypt::encrypt(strtotime('today +1 day'));
+		$a = Crypt::encrypt($request->id);
+		$b = Crypt::encrypt($request->periodos);
+		$c = Crypt::encrypt($request->type);
 
-		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare, $wcliques, $wimpressoes, $wcpc, $winvestimento, $wctr, $wposicao, $wconversao, $wcustoConversao, $wtaxaConversao, $wsearchImpressionShare, $hcliques, $himpressoes, $hcpc, $hinvestimento, $hctr, $hposicao, $hconversao, $hcustoConversao, $htaxaConversao, $hsearchImpressionShare);
+		 $attach = 'token='.$token.'&a='.$a.'&b='.$b.'&c='.$c;
+
+		
+		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare, $wcliques, $wimpressoes, $wcpc, $winvestimento, $wctr, $wposicao, $wconversao, $wcustoConversao, $wtaxaConversao, $wsearchImpressionShare, $hcliques, $himpressoes, $hcpc, $hinvestimento, $hctr, $hposicao, $hconversao, $hcustoConversao, $htaxaConversao, $hsearchImpressionShare, $attach);
 
 		return $Arrays;
 
@@ -92,10 +101,11 @@ class RelatorioController extends Controller {
 
 	public function view(Request $request) {
 
-		$token = Crypt::decrypt($request->input('token'));
-		$a = Crypt::decrypt($request->input('a'));
-		$b = Crypt::decrypt($request->input('b'));
-		$c = Crypt::decrypt($request->input('c'));
+		echo '<script>console.log('.$request.')</script>';
+		$token = Crypt::decrypt($request->token);
+		$a = Crypt::decrypt($request->a);
+		$b = Crypt::decrypt($request->b);
+		$c = Crypt::decrypt($request->c);
 		$r = 'E';
 
 		if($c == 'SEARCH' || $c == 'SHOPPING'){
@@ -109,6 +119,7 @@ class RelatorioController extends Controller {
 			$parcela_impressao_orcamento = 'ContentBudgetLostImpressionShare';
 			$parcela_impressao_rank = 'ContentRankLostImpressionShare';
 		}
+
 
 		$user = new AdWordsUser();
 		$user->SetClientCustomerId($a);
@@ -125,6 +136,7 @@ class RelatorioController extends Controller {
 		if($token >= strtotime('today')){
 			return view('emails.relatorio')->with(['data'=>$data, 'week'=>$week, 'hour'=>$hour, 'geo'=>$geo, 'tipo' => $c, 'name' => $name]);
 		}
+
 		else{
 			return view('index');
 		}
