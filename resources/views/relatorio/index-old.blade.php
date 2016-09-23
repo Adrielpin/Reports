@@ -8,138 +8,111 @@ Relatório
 
 @section('body')
 
+<div class='col-xs-12 col-sm-12 col-md-3 col-lg-2'>
 
-<div id='sistem'>
+	{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
 
-	<div id="wrapper">
+	@include('relatorio.partials.form')
 
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li>
-
-					<div class='container-fluid'>
-
-						{{ Form::open(array('role' => 'form', 'class'=>'form-group')) }}
-
-						@include('relatorio.partials.form')
+	{{ Form::close() }}
 
 
-						{{ Form::close() }}
+</div>
 
-					</div>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10" id='report'>
 
-				</li>
-			</ul>
-		</div>
-		<!-- /#sidebar-wrapper -->
+	<a href="#menu-toogle" class='btn btn-default' role='button'>toogle</a>
 
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
+	<div class='container-fluid'>
 
-			<div class="row">
+		<div class='row'>
 
-				<div class="col-lg-12">
+			<div class="progress" hidden="true">
 
-					<div class='container-fluid'>
-
-					@include('relatorio.partials.modal')
-
-						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Filtros</a>
-
-						<div class='row'>
-
-							<div class="progress" hidden="true">
-
-								<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:1%">1%</div>
-
-							</div>
-
-						</div>
-
-						<div class='row' id='desempenho'>
-
-							<h3>Desempenho</h3>
-
-							{{-- date includes --}}
-							@include('relatorio.partials.datecharts.cliques')
-
-							@include('relatorio.partials.datecharts.impressoes')
-
-							@include('relatorio.partials.datecharts.cpc')
-
-							@include('relatorio.partials.datecharts.investimento')
-
-							@include('relatorio.partials.datecharts.ctr')
-
-							@include('relatorio.partials.datecharts.posicao')
-
-							@include('relatorio.partials.datecharts.conversao')
-
-							@include('relatorio.partials.datecharts.custo_conversao')
-
-							@include('relatorio.partials.datecharts.taxa_conversao')
-
-							{{-- @include('relatorio.partials.datecharts.searchImpressionShared') --}}
-
-							{{-- week includes --}}
-							@include('relatorio.partials.weekcharts.cliques')
-
-							@include('relatorio.partials.weekcharts.impressoes')
-
-							@include('relatorio.partials.weekcharts.cpc')
-
-							@include('relatorio.partials.weekcharts.investimento')
-
-							@include('relatorio.partials.weekcharts.ctr')
-
-							@include('relatorio.partials.weekcharts.posicao')
-
-							@include('relatorio.partials.weekcharts.conversao')
-
-							@include('relatorio.partials.weekcharts.custo_conversao')
-
-							@include('relatorio.partials.weekcharts.taxa_conversao')
-
-							{{-- hour includes --}}
-							@include('relatorio.partials.hourcharts.cliques')
-
-							@include('relatorio.partials.hourcharts.impressoes')
-
-							@include('relatorio.partials.hourcharts.cpc')
-
-							@include('relatorio.partials.hourcharts.investimento')
-
-							@include('relatorio.partials.hourcharts.ctr')
-
-							@include('relatorio.partials.hourcharts.posicao')
-
-							@include('relatorio.partials.hourcharts.conversao')
-
-							@include('relatorio.partials.hourcharts.custo_conversao')
-
-							@include('relatorio.partials.hourcharts.taxa_conversao')
-
-						</div>
-
-						<div class='row' id='projecao'>
-
-							<h3>Projeção de resultados</h3>
-
-						</div>
-
-					</div>
-
-				</div>
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:1%">1%</div>
 
 			</div>
 
 		</div>
-		<!-- /#page-content-wrapper -->
+
+		<div class='row' id='desempenho'>
+
+			<h3>Desempenho</h3>
+
+			{{-- date includes --}}
+			@include('relatorio.partials.datecharts.cliques')
+
+			@include('relatorio.partials.datecharts.impressoes')
+
+			@include('relatorio.partials.datecharts.cpc')
+
+			@include('relatorio.partials.datecharts.investimento')
+
+			@include('relatorio.partials.datecharts.ctr')
+
+			@include('relatorio.partials.datecharts.posicao')
+
+			@include('relatorio.partials.datecharts.conversao')
+
+			@include('relatorio.partials.datecharts.custo_conversao')
+
+			@include('relatorio.partials.datecharts.taxa_conversao')
+
+			{{-- @include('relatorio.partials.datecharts.searchImpressionShared') --}}
+
+			{{-- week includes --}}
+			@include('relatorio.partials.weekcharts.cliques')
+
+			@include('relatorio.partials.weekcharts.impressoes')
+
+			@include('relatorio.partials.weekcharts.cpc')
+
+			@include('relatorio.partials.weekcharts.investimento')
+
+			@include('relatorio.partials.weekcharts.ctr')
+
+			@include('relatorio.partials.weekcharts.posicao')
+
+			@include('relatorio.partials.weekcharts.conversao')
+
+			@include('relatorio.partials.weekcharts.custo_conversao')
+
+			@include('relatorio.partials.weekcharts.taxa_conversao')
+
+			{{-- hour includes --}}
+			@include('relatorio.partials.hourcharts.cliques')
+
+			@include('relatorio.partials.hourcharts.impressoes')
+
+			@include('relatorio.partials.hourcharts.cpc')
+
+			@include('relatorio.partials.hourcharts.investimento')
+
+			@include('relatorio.partials.hourcharts.ctr')
+
+			@include('relatorio.partials.hourcharts.posicao')
+
+			@include('relatorio.partials.hourcharts.conversao')
+
+			@include('relatorio.partials.hourcharts.custo_conversao')
+
+			@include('relatorio.partials.hourcharts.taxa_conversao')
+
+		</div>
+
+		<div class='row' id='projecao'>
+
+			<h3>Projeção de resultados</h3>
+
+		</div>
 
 	</div>
 
 </div>
+
+{{-- @include('relatorio.partials.modal') --}}
+
+<!--Load the AJAX API-->
 
 <script type="text/javascript">
 
@@ -352,7 +325,6 @@ Relatório
 		hourConversao.draw();
 		hourCustoConversao.draw();
 		hourTaxaConversao.draw();
-		
 	});
 
 	$('#button-proj').click(function (){
@@ -363,6 +335,5 @@ Relatório
 	($('input[name="dateClick"]').is(':checked')) ? $("#panel_dateClick").show() : $("#panel_dateClick").hide();
 
 </script>
-
 
 @stop()

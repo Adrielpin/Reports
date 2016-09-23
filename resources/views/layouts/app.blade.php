@@ -5,23 +5,24 @@
 <head>
 	
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-	<title> @yield('title') </title>
-	
-	<script src="{{ asset('assets/js/all.js') }}"></script>
+	<title>@yield('title')</title>
+
+	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url('/css/sidebar.css') }}" />
 	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/pt-BR.js"></script>
 
-	<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
 
 	<style type="text/css">
 
 		body{
-			padding-top: 70px;
+			padding-top: 50px;
 		}
 
 		[class*="col-"] .select2-container {
@@ -36,21 +37,6 @@
 			width: 100% !important;
 		}
 
-		@media (min-width: 1024px) {
-			.affix {
-				position: fixed;
-			}
-			#report{
-				width: 65%
-			}
-		}
-
-		@media (max-width: 1023px) {
-			.affix {
-				position: static;
-			}
-		}
-
 	</style>
 
 	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
@@ -58,7 +44,11 @@
 </head>
 
 <body>
+	<script src="{{ asset('assets/js/all.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/pt-BR.js"></script>
 
+	<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
 		<div class="container-fluid">
@@ -86,7 +76,7 @@
 					<!-- Authentication Links -->
 
 					<li><a href="{{ url('/login') }}">Login</a></li>
-					
+
 				</ul>
 
 				@else
@@ -133,26 +123,30 @@
 
 	</nav>
 
-	<div class='container-fluid'>
+	<div class="flash-message">
 
-		<div class="flash-message">
+		@foreach (['danger', 'warning', 'success', 'info'] as $msg)
 
-			@foreach (['danger', 'warning', 'success', 'info'] as $msg)
+		@if(Session::has('alert-' . $msg))
 
-			@if(Session::has('alert-' . $msg))
+		<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
 
-			<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+		@endif
 
-			@endif
+		@endforeach
 
-			@endforeach
-
-		</div>
-
-		@yield('body')
-		
 	</div>
 
+
+	@yield('body')
+
+	<script>
+		$("#menu-toggle").click(function(e) {
+
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
 
 </body>
 

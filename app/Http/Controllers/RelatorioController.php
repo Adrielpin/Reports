@@ -21,9 +21,11 @@ use DateRange;
 use ReportUtils;
 use ReportDefinition;
 
+use Relatorio\getDates;
 use Relatorio\requestData;
 use Relatorio\contas;
 use Relatorio\dateArrays;
+use Relatorio\monthArrays;
 use Relatorio\weekArrays;
 use Relatorio\hourArrays;
 use Relatorio\oldmethods;
@@ -47,8 +49,11 @@ class RelatorioController extends Controller {
 		$values = new requestData();
 		$values = $values->request($request);
 
+		$date = new getDates();
+		$date = $date->getParameter($request);
+		
+		($date != 'Date') ? $adsArrays = new monthArrays() : $adsArrays = new dateArrays();
 
-		$adsArrays = new dateArrays();
 		$cliques = $adsArrays->cliques($values);
 		$impressoes = $adsArrays->impressoes($values);
 		$cpc = $adsArrays->cpc($values);
@@ -90,7 +95,7 @@ class RelatorioController extends Controller {
 		$b = Crypt::encrypt($request->periodos);
 		$c = Crypt::encrypt($request->type);
 
-		 $attach = 'token='.$token.'&a='.$a.'&b='.$b.'&c='.$c;
+		$attach = 'token='.$token.'&a='.$a.'&b='.$b.'&c='.$c;
 
 		
 		$Arrays = array($cliques, $impressoes, $cpc, $investimento, $ctr, $posicao, $conversao, $custoConversao, $taxaConversao, $searchImpressionShare, $wcliques, $wimpressoes, $wcpc, $winvestimento, $wctr, $wposicao, $wconversao, $wcustoConversao, $wtaxaConversao, $wsearchImpressionShare, $hcliques, $himpressoes, $hcpc, $hinvestimento, $hctr, $hposicao, $hconversao, $hcustoConversao, $htaxaConversao, $hsearchImpressionShare, $attach);
@@ -101,7 +106,7 @@ class RelatorioController extends Controller {
 
 	public function view(Request $request) {
 
-		echo '<script>console.log('.$request.')</script>';
+		
 		$token = Crypt::decrypt($request->token);
 		$a = Crypt::decrypt($request->a);
 		$b = Crypt::decrypt($request->b);

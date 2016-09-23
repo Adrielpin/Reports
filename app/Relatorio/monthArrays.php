@@ -9,7 +9,7 @@
 
 namespace Relatorio;
 
-class dateArrays {
+class monthArrays {
 
 	public static function cliques($returned) {
 		
@@ -21,7 +21,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000 , (int)$row["clicks"]));
+				array_push($tmp, array(strtotime($row["month"])*1000 , (int)$row["clicks"]));
 			}
 		}
 
@@ -33,7 +33,7 @@ class dateArrays {
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>$value[1], 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>$value[1], 'f'=>'000.000,00'))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Cliques','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -51,7 +51,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["impressions"]));
 			}
 		}
 
@@ -81,7 +81,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000, (int)$row["clicks"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["cost"]/1000000, (int)$row["clicks"]));
 			}
 		}
 
@@ -93,10 +93,10 @@ class dateArrays {
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2]),2), 'f'=>null))));
 		}
 
-		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Cpc','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
+		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'CPC - Custo por clique','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
 		return json_encode($tmpArray, JSON_PRETTY_PRINT);
 
 	}
@@ -111,7 +111,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["cost"]/1000000));
 			}
 		}
 
@@ -123,7 +123,7 @@ class dateArrays {
 		asort($tmp);
 
 		foreach ($tmp as $value) {
-			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>$value[1], 'f'=>null))));
+			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>$value[1], 'f'=>'R$: 9.999,00'))));
 		}
 
 		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Investimento','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
@@ -141,7 +141,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
 			}
 		}
 
@@ -156,7 +156,7 @@ class dateArrays {
 			array_push($tmpArray, array('c'=>array(array('v'=>"Date($value[0])", 'f'=>null), array('v'=>($value[2] == 0) ? 0 : round((float)($value[1]/$value[2])*100,2), 'f'=>null))));
 		}
 
-		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'Ctr','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
+		$tmpArray = array('cols'=>array(array('id'=>null, 'label'=>'Data','pattern'=>null ,'type'=>'date'),array('id'=>null,'label'=>'CTR - Taxa de cliques','pattern'=>null,'type'=>'number')),'rows'=>$tmpArray);
 		return json_encode($tmpArray, JSON_PRETTY_PRINT);
 
 	}
@@ -171,7 +171,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["impressions"]*(int)$row["avgPosition"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["impressions"]*(int)$row["avgPosition"], (int)$row["impressions"]));
 			}
 		}
 
@@ -201,7 +201,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["conversions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["conversions"]));
 			}
 		}
 
@@ -232,7 +232,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["cost"]/1000000, (int)$row["conversions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["cost"]/1000000, (int)$row["conversions"]));
 			}
 		}
 
@@ -262,7 +262,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["conversions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["conversions"]));
 			}
 		}
 
@@ -292,7 +292,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
 			}
 		}
 
@@ -322,7 +322,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
 			}
 		}
 
@@ -352,7 +352,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
 			}
 		}
 
@@ -382,7 +382,7 @@ class dateArrays {
 
 		foreach ($xml as $col) {
 			foreach($col as $row) {
-				array_push($tmp, array(strtotime($row["day"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, (int)$row["clicks"], (int)$row["impressions"]));
 			}
 		}
 
@@ -415,8 +415,8 @@ class dateArrays {
 		foreach ($xml as $col) {
 			foreach($col as $row) {
 				((float)$row["searchImprShare"] < 11 || (float)$row["searchImprShare"] > 89) ? $val = (100-((float)$row["searchLostISBudget"]+(float)$row["searchLostISRank"])) : $val = (float)$row["searchImprShare"];
-				array_push($tmp, array(strtotime($row["day"])*1000, ($val == 0) ? 0 : ((int)$row["impressions"]/$val)*100));
-				array_push($tmp_2, array(strtotime($row["day"])*1000, (int)$row["impressions"]));
+				array_push($tmp, array(strtotime($row["month"])*1000, ($val == 0) ? 0 : ((int)$row["impressions"]/$val)*100));
+				array_push($tmp_2, array(strtotime($row["month"])*1000, (int)$row["impressions"]));
 			}
 		}
 

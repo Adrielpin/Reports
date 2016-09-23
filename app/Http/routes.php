@@ -7,6 +7,10 @@ Route::get('/', function () {
 	return view('index');
 });
 
+Route::get('layout', function () {
+	return view('layout');
+});
+
 Route::get('relatorio/view', ['uses' => 'RelatorioController@view']);
 
 Route::auth();

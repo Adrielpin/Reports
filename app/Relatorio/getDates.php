@@ -1,4 +1,5 @@
 <?php 
+
 namespace Relatorio;
 
 class getDates {
@@ -198,10 +199,6 @@ class getDates {
 
 			if($dias > 31 && $dias < 366){
 				$sintax = 'Month';
-			}
-
-			if($dias > 366){
-				$sintax = 'Year';
 			}
 		}
 

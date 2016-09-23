@@ -1,10 +1,10 @@
 <script type="text/javascript">
-dateCliques = new google.visualization.ChartWrapper({
-	chartType: 'ColumnChart',
-	dataTable: null,
-	options: {'legend': 'top', 'height':(($(window).width())/3)},
-	containerId: 'date_Cliques'
-});
+	dateCliques = new google.visualization.ChartWrapper({
+		chartType: 'ColumnChart',
+		dataTable: null,
+		options: {'legend': 'top', 'height':(($(window).width())/3)},
+		containerId: 'date_Cliques'
+	});
 </script>
 
 <div class='row' id='panel_dateClick'>
